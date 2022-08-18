@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcOrderChildSerMapper">
+	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcOrderChildPo">
+		<id column="child_seq" property="childSeq" jdbcType="INTEGER" />
+		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="delivery_model" property="deliveryModel" jdbcType="INTEGER" />
+		<result column="in_province" property="inProvince" jdbcType="INTEGER" />
+		<result column="in_city" property="inCity" jdbcType="INTEGER" />
+		<result column="out_province" property="outProvince" jdbcType="INTEGER" />
+		<result column="out_city" property="outCity" jdbcType="INTEGER" />
+		<result column="out_person" property="outPerson" jdbcType="INTEGER" />
+		<result column="out_time" property="outTime" jdbcType="TIMESTAMP" />
+		<result column="transfer_person" property="transferPerson" jdbcType="INTEGER" />
+		<result column="transfer_reason" property="transferReason" jdbcType="VARCHAR" />
+		<result column="transfer_time" property="transferTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcOrderChildVo">
+		<id column="child_seq" property="childSeq" jdbcType="INTEGER" />
+		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="delivery_model" property="deliveryModel" jdbcType="INTEGER" />
+		<result column="in_province" property="inProvince" jdbcType="INTEGER" />
+		<result column="in_city" property="inCity" jdbcType="INTEGER" />
+		<result column="out_province" property="outProvince" jdbcType="INTEGER" />
+		<result column="out_city" property="outCity" jdbcType="INTEGER" />
+		<result column="out_person" property="outPerson" jdbcType="INTEGER" />
+		<result column="out_time" property="outTime" jdbcType="TIMESTAMP" />
+		<result column="transfer_person" property="transferPerson" jdbcType="INTEGER" />
+		<result column="transfer_reason" property="transferReason" jdbcType="VARCHAR" />
+		<result column="transfer_time" property="transferTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select 
+		 child_seq,child_order_no,order_no,delivery_model,in_province,in_city,out_province,out_city,out_person,out_time,transfer_person,transfer_reason,transfer_time,create_time 
+		from otc_order_child 
+		where child_seq = #{childSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderChildPo">
+		select  
+		 child_seq,child_order_no,order_no,delivery_model,in_province,in_city,out_province,out_city,out_person,out_time,transfer_person,transfer_reason,transfer_time,create_time 
+		from otc_order_child 
+		<where>
+				<if test="childOrderNo != null">
+					AND child_order_no = #{childOrderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="deliveryModel != null">
+					AND delivery_model = #{deliveryModel,jdbcType=INTEGER}
+				</if>
+				<if test="inProvince != null">
+					AND in_province = #{inProvince,jdbcType=INTEGER}
+				</if>
+				<if test="inCity != null">
+					AND in_city = #{inCity,jdbcType=INTEGER}
+				</if>
+				<if test="outProvince != null">
+					AND out_province = #{outProvince,jdbcType=INTEGER}
+				</if>
+				<if test="outCity != null">
+					AND out_city = #{outCity,jdbcType=INTEGER}
+				</if>
+				<if test="outPerson != null">
+					AND out_person = #{outPerson,jdbcType=INTEGER}
+				</if>
+				<if test="outTime != null">
+					AND out_time = #{outTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="transferPerson != null">
+					AND transfer_person = #{transferPerson,jdbcType=INTEGER}
+				</if>
+				<if test="transferReason != null">
+					AND transfer_reason = #{transferReason,jdbcType=VARCHAR}
+				</if>
+				<if test="transferTime != null">
+					AND transfer_time = #{transferTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Long">
+		select 
+		 child_seq,child_order_no,order_no,delivery_model,in_province,in_city,out_province,out_city,out_person,out_time,transfer_person,transfer_reason,transfer_time,create_time 
+		from otc_order_child 
+		where child_seq = #{childSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderChildPo">
+		select child_seq,child_order_no,order_no,delivery_model,in_province,in_city,out_province,out_city,out_person,out_time,transfer_person,transfer_reason,transfer_time,create_time from otc_order_child
+		<where>
+				<if test="childOrderNo != null">
+					AND child_order_no = #{childOrderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="deliveryModel != null">
+					AND delivery_model = #{deliveryModel,jdbcType=INTEGER}
+				</if>
+				<if test="inProvince != null">
+					AND in_province = #{inProvince,jdbcType=INTEGER}
+				</if>
+				<if test="inCity != null">
+					AND in_city = #{inCity,jdbcType=INTEGER}
+				</if>
+				<if test="outProvince != null">
+					AND out_province = #{outProvince,jdbcType=INTEGER}
+				</if>
+				<if test="outCity != null">
+					AND out_city = #{outCity,jdbcType=INTEGER}
+				</if>
+				<if test="outPerson != null">
+					AND out_person = #{outPerson,jdbcType=INTEGER}
+				</if>
+				<if test="outTime != null">
+					AND out_time = #{outTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="transferPerson != null">
+					AND transfer_person = #{transferPerson,jdbcType=INTEGER}
+				</if>
+				<if test="transferReason != null">
+					AND transfer_reason = #{transferReason,jdbcType=VARCHAR}
+				</if>
+				<if test="transferTime != null">
+					AND transfer_time = #{transferTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryPageList" resultMap="BaseResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order_child 
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+	
+	<select id="queryPageCounts" resultType="java.lang.Integer" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select count(child_seq) from otc_order_child
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="queryPageVoList" resultMap="BaseVoResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order_child
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+</mapper>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcOrderSerMapper">
+	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcOrderPo">
+		<id column="order_seq" property="orderSeq" jdbcType="INTEGER" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="salesman" property="salesman" jdbcType="INTEGER" />
+		<result column="order_type" property="orderType" jdbcType="INTEGER" />
+		<result column="business_code" property="businessCode" jdbcType="VARCHAR" />
+		<result column="order_money" property="orderMoney" jdbcType="DECIMAL" />
+		<result column="discount_rate" property="discountRate" jdbcType="DECIMAL" />
+		<result column="discount_money" property="discountMoney" jdbcType="DECIMAL" />
+		<result column="prefer_money" property="preferMoney" jdbcType="DECIMAL" />
+		<result column="post_money" property="postMoney" jdbcType="DECIMAL" />
+		<result column="recieve_addr" property="recieveAddr" jdbcType="CHAR" />
+		<result column="pay_money" property="payMoney" jdbcType="DECIMAL" />
+		<result column="pay_model" property="payModel" jdbcType="INTEGER" />
+		<result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+		<result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+		<result column="finish_time" property="finishTime" jdbcType="TIMESTAMP" />
+		<result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcOrderVo">
+		<id column="order_seq" property="orderSeq" jdbcType="INTEGER" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="salesman" property="salesman" jdbcType="INTEGER" />
+		<result column="order_type" property="orderType" jdbcType="INTEGER" />
+		<result column="business_code" property="businessCode" jdbcType="VARCHAR" />
+		<result column="order_money" property="orderMoney" jdbcType="DECIMAL" />
+		<result column="discount_rate" property="discountRate" jdbcType="DECIMAL" />
+		<result column="discount_money" property="discountMoney" jdbcType="DECIMAL" />
+		<result column="prefer_money" property="preferMoney" jdbcType="DECIMAL" />
+		<result column="post_money" property="postMoney" jdbcType="DECIMAL" />
+		<result column="recieve_addr" property="recieveAddr" jdbcType="CHAR" />
+		<result column="pay_money" property="payMoney" jdbcType="DECIMAL" />
+		<result column="pay_model" property="payModel" jdbcType="INTEGER" />
+		<result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+		<result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+		<result column="finish_time" property="finishTime" jdbcType="TIMESTAMP" />
+		<result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select 
+		 order_seq,order_no,salesman,order_type,business_code,order_money,discount_rate,discount_money,prefer_money,post_money,recieve_addr,pay_money,pay_model,pay_time,send_time,finish_time,order_status,create_time,update_time 
+		from otc_order 
+		where order_seq = #{orderSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderPo">
+		select  
+		 order_seq,order_no,salesman,order_type,business_code,order_money,discount_rate,discount_money,prefer_money,post_money,recieve_addr,pay_money,pay_model,pay_time,send_time,finish_time,order_status,create_time,update_time 
+		from otc_order 
+		<where>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="salesman != null">
+					AND salesman = #{salesman,jdbcType=INTEGER}
+				</if>
+				<if test="orderType != null">
+					AND order_type = #{orderType,jdbcType=INTEGER}
+				</if>
+				<if test="businessCode != null">
+					AND business_code = #{businessCode,jdbcType=VARCHAR}
+				</if>
+				<if test="orderMoney != null">
+					AND order_money = #{orderMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="discountRate != null">
+					AND discount_rate = #{discountRate,jdbcType=DECIMAL}
+				</if>
+				<if test="discountMoney != null">
+					AND discount_money = #{discountMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="preferMoney != null">
+					AND prefer_money = #{preferMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="postMoney != null">
+					AND post_money = #{postMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="recieveAddr != null">
+					AND recieve_addr = #{recieveAddr,jdbcType=CHAR}
+				</if>
+				<if test="payMoney != null">
+					AND pay_money = #{payMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="payModel != null">
+					AND pay_model = #{payModel,jdbcType=INTEGER}
+				</if>
+				<if test="payTime != null">
+					AND pay_time = #{payTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="sendTime != null">
+					AND send_time = #{sendTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="finishTime != null">
+					AND finish_time = #{finishTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="orderStatus != null">
+					AND order_status = #{orderStatus,jdbcType=INTEGER}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Long">
+		select 
+		 order_seq,order_no,salesman,order_type,business_code,order_money,discount_rate,discount_money,prefer_money,post_money,recieve_addr,pay_money,pay_model,pay_time,send_time,finish_time,order_status,create_time,update_time 
+		from otc_order 
+		where order_seq = #{orderSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderPo">
+		select order_seq,order_no,salesman,order_type,business_code,order_money,discount_rate,discount_money,prefer_money,post_money,recieve_addr,pay_money,pay_model,pay_time,send_time,finish_time,order_status,create_time,update_time from otc_order
+		<where>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="salesman != null">
+					AND salesman = #{salesman,jdbcType=INTEGER}
+				</if>
+				<if test="orderType != null">
+					AND order_type = #{orderType,jdbcType=INTEGER}
+				</if>
+				<if test="businessCode != null">
+					AND business_code = #{businessCode,jdbcType=VARCHAR}
+				</if>
+				<if test="orderMoney != null">
+					AND order_money = #{orderMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="discountRate != null">
+					AND discount_rate = #{discountRate,jdbcType=DECIMAL}
+				</if>
+				<if test="discountMoney != null">
+					AND discount_money = #{discountMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="preferMoney != null">
+					AND prefer_money = #{preferMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="postMoney != null">
+					AND post_money = #{postMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="recieveAddr != null">
+					AND recieve_addr = #{recieveAddr,jdbcType=CHAR}
+				</if>
+				<if test="payMoney != null">
+					AND pay_money = #{payMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="payModel != null">
+					AND pay_model = #{payModel,jdbcType=INTEGER}
+				</if>
+				<if test="payTime != null">
+					AND pay_time = #{payTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="sendTime != null">
+					AND send_time = #{sendTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="finishTime != null">
+					AND finish_time = #{finishTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="orderStatus != null">
+					AND order_status = #{orderStatus,jdbcType=INTEGER}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryPageList" resultMap="BaseResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order 
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+	
+	<select id="queryPageCounts" resultType="java.lang.Integer" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select count(order_seq) from otc_order
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="queryPageVoList" resultMap="BaseVoResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+</mapper>

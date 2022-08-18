@@ -1,4 +1,4 @@
-package com.cm.order.server;
+package com.cm.order.center.server;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;

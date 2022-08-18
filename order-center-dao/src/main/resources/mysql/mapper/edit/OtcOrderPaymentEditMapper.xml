@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cm.order.center.dao.mapper.edit.OtcOrderPaymentEditMapper">
+	
+	<insert id="save" parameterType="com.cm.order.center.dao.po.OtcOrderPaymentPo">
+		insert into otc_order_payment(
+			trans_no,order_no,trans_money,pay_model,supplier_no,merchant_code,bank_code,merchant_no,trans_detail,trans_status,pay_time,lock_flg,run_count,lock_time,create_time,update_time
+		)
+		values(
+			#{transNo,jdbcType=VARCHAR},
+			#{orderNo,jdbcType=VARCHAR},
+			#{transMoney,jdbcType=DECIMAL},
+			#{payModel,jdbcType=INTEGER},
+			#{supplierNo,jdbcType=VARCHAR},
+			#{merchantCode,jdbcType=VARCHAR},
+			#{bankCode,jdbcType=VARCHAR},
+			#{merchantNo,jdbcType=VARCHAR},
+			#{transDetail,jdbcType=VARCHAR},
+			#{transStatus,jdbcType=INTEGER},
+			#{payTime,jdbcType=TIMESTAMP},
+			#{lockFlg,jdbcType=INTEGER},
+			#{runCount,jdbcType=INTEGER},
+			#{lockTime,jdbcType=TIMESTAMP},
+			#{createTime,jdbcType=TIMESTAMP},
+			#{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<insert id="saveList" parameterType="java.util.List">
+		insert into otc_order_payment(
+			trans_no,order_no,trans_money,pay_model,supplier_no,merchant_code,bank_code,merchant_no,trans_detail,trans_status,pay_time,lock_flg,run_count,lock_time,create_time,update_time
+		)
+		values
+		<foreach collection="list" item="entity" separator=",">
+		(
+			#{transNo,jdbcType=VARCHAR},
+			#{orderNo,jdbcType=VARCHAR},
+			#{transMoney,jdbcType=DECIMAL},
+			#{payModel,jdbcType=INTEGER},
+			#{supplierNo,jdbcType=VARCHAR},
+			#{merchantCode,jdbcType=VARCHAR},
+			#{bankCode,jdbcType=VARCHAR},
+			#{merchantNo,jdbcType=VARCHAR},
+			#{transDetail,jdbcType=VARCHAR},
+			#{transStatus,jdbcType=INTEGER},
+			#{payTime,jdbcType=TIMESTAMP},
+			#{lockFlg,jdbcType=INTEGER},
+			#{runCount,jdbcType=INTEGER},
+			#{lockTime,jdbcType=TIMESTAMP},
+			#{createTime,jdbcType=TIMESTAMP},
+			#{updateTime,jdbcType=TIMESTAMP}
+		)
+		</foreach>
+	</insert>
+	
+	<update id="editEntity" parameterType="com.cm.order.center.dao.po.OtcOrderPaymentPo">
+		update otc_order_payment
+		<set>
+			 <if test="transNo != null">
+		     	trans_no = #{transNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="orderNo != null">
+		     	order_no = #{orderNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="transMoney != null">
+		     	trans_money = #{transMoney,jdbcType=DECIMAL},
+		     </if>
+			 <if test="payModel != null">
+		     	pay_model = #{payModel,jdbcType=INTEGER},
+		     </if>
+			 <if test="supplierNo != null">
+		     	supplier_no = #{supplierNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="merchantCode != null">
+		     	merchant_code = #{merchantCode,jdbcType=VARCHAR},
+		     </if>
+			 <if test="bankCode != null">
+		     	bank_code = #{bankCode,jdbcType=VARCHAR},
+		     </if>
+			 <if test="merchantNo != null">
+		     	merchant_no = #{merchantNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="transDetail != null">
+		     	trans_detail = #{transDetail,jdbcType=VARCHAR},
+		     </if>
+			 <if test="transStatus != null">
+		     	trans_status = #{transStatus,jdbcType=INTEGER},
+		     </if>
+			 <if test="payTime != null">
+		     	pay_time = #{payTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="lockFlg != null">
+		     	lock_flg = #{lockFlg,jdbcType=INTEGER},
+		     </if>
+			 <if test="runCount != null">
+		     	run_count = #{runCount,jdbcType=INTEGER},
+		     </if>
+			 <if test="lockTime != null">
+		     	lock_time = #{lockTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="createTime != null">
+		     	create_time = #{createTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="updateTime != null">
+		     	update_time = #{updateTime,jdbcType=TIMESTAMP},
+		     </if>
+		</set>
+		where pay_no=#{payNo,jdbcType=INTEGER}
+	</update>
+	
+	<update id="editRecord" parameterType="com.cm.architecture.jdbc.entity.EditValueAndWhereEntity">
+		update otc_order_payment
+		<set>
+			<foreach collection="editValue" index="key" item="item">
+				 <if test="item != null and item.value != null">
+			     	${key} = #{item.value,jdbcType=${item.jdbcType}},
+			     </if>
+			</foreach>
+		</set>
+		<where>
+			<foreach collection="editWhere" index="key" item="item">
+				<if test="item != null and item.value != null">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+			</foreach>
+		</where>
+	</update>
+
+	<delete id="remove" parameterType="com.cm.order.center.dao.po.OtcOrderPaymentPo">
+		delete from otc_order_payment where 
+	    pay_no = #{payNo,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcOrderDetailSerMapper">
+	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcOrderDetailPo">
+		<id column="detail_seq" property="detailSeq" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
+		<result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+		<result column="goods_code" property="goodsCode" jdbcType="INTEGER" />
+		<result column="goods_img" property="goodsImg" jdbcType="VARCHAR" />
+		<result column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
+		<result column="batch_price" property="batchPrice" jdbcType="DECIMAL" />
+		<result column="goods_count" property="goodsCount" jdbcType="INTEGER" />
+		<result column="goods_money" property="goodsMoney" jdbcType="DECIMAL" />
+		<result column="discount_rate" property="discountRate" jdbcType="DECIMAL" />
+		<result column="discount_moeny" property="discountMoeny" jdbcType="DECIMAL" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcOrderDetailVo">
+		<id column="detail_seq" property="detailSeq" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
+		<result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+		<result column="goods_code" property="goodsCode" jdbcType="INTEGER" />
+		<result column="goods_img" property="goodsImg" jdbcType="VARCHAR" />
+		<result column="goods_price" property="goodsPrice" jdbcType="DECIMAL" />
+		<result column="batch_price" property="batchPrice" jdbcType="DECIMAL" />
+		<result column="goods_count" property="goodsCount" jdbcType="INTEGER" />
+		<result column="goods_money" property="goodsMoney" jdbcType="DECIMAL" />
+		<result column="discount_rate" property="discountRate" jdbcType="DECIMAL" />
+		<result column="discount_moeny" property="discountMoeny" jdbcType="DECIMAL" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select 
+		 detail_seq,user_id,order_no,child_order_no,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time 
+		from otc_order_detail 
+		where detail_seq = #{detailSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderDetailPo">
+		select  
+		 detail_seq,user_id,order_no,child_order_no,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time 
+		from otc_order_detail 
+		<where>
+				<if test="userId != null">
+					AND user_id = #{userId,jdbcType=INTEGER}
+				</if>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="childOrderNo != null">
+					AND child_order_no = #{childOrderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="goodsName != null">
+					AND goods_name = #{goodsName,jdbcType=VARCHAR}
+				</if>
+				<if test="goodsCode != null">
+					AND goods_code = #{goodsCode,jdbcType=INTEGER}
+				</if>
+				<if test="goodsImg != null">
+					AND goods_img = #{goodsImg,jdbcType=VARCHAR}
+				</if>
+				<if test="goodsPrice != null">
+					AND goods_price = #{goodsPrice,jdbcType=DECIMAL}
+				</if>
+				<if test="batchPrice != null">
+					AND batch_price = #{batchPrice,jdbcType=DECIMAL}
+				</if>
+				<if test="goodsCount != null">
+					AND goods_count = #{goodsCount,jdbcType=INTEGER}
+				</if>
+				<if test="goodsMoney != null">
+					AND goods_money = #{goodsMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="discountRate != null">
+					AND discount_rate = #{discountRate,jdbcType=DECIMAL}
+				</if>
+				<if test="discountMoeny != null">
+					AND discount_moeny = #{discountMoeny,jdbcType=DECIMAL}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Long">
+		select 
+		 detail_seq,user_id,order_no,child_order_no,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time 
+		from otc_order_detail 
+		where detail_seq = #{detailSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderDetailPo">
+		select detail_seq,user_id,order_no,child_order_no,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time from otc_order_detail
+		<where>
+				<if test="userId != null">
+					AND user_id = #{userId,jdbcType=INTEGER}
+				</if>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="childOrderNo != null">
+					AND child_order_no = #{childOrderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="goodsName != null">
+					AND goods_name = #{goodsName,jdbcType=VARCHAR}
+				</if>
+				<if test="goodsCode != null">
+					AND goods_code = #{goodsCode,jdbcType=INTEGER}
+				</if>
+				<if test="goodsImg != null">
+					AND goods_img = #{goodsImg,jdbcType=VARCHAR}
+				</if>
+				<if test="goodsPrice != null">
+					AND goods_price = #{goodsPrice,jdbcType=DECIMAL}
+				</if>
+				<if test="batchPrice != null">
+					AND batch_price = #{batchPrice,jdbcType=DECIMAL}
+				</if>
+				<if test="goodsCount != null">
+					AND goods_count = #{goodsCount,jdbcType=INTEGER}
+				</if>
+				<if test="goodsMoney != null">
+					AND goods_money = #{goodsMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="discountRate != null">
+					AND discount_rate = #{discountRate,jdbcType=DECIMAL}
+				</if>
+				<if test="discountMoeny != null">
+					AND discount_moeny = #{discountMoeny,jdbcType=DECIMAL}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryPageList" resultMap="BaseResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order_detail 
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+	
+	<select id="queryPageCounts" resultType="java.lang.Integer" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select count(detail_seq) from otc_order_detail
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="queryPageVoList" resultMap="BaseVoResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order_detail
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+</mapper>

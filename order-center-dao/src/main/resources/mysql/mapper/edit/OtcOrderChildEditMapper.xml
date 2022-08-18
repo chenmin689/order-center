@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cm.order.center.dao.mapper.edit.OtcOrderChildEditMapper">
+	
+	<insert id="save" parameterType="com.cm.order.center.dao.po.OtcOrderChildPo">
+		insert into otc_order_child(
+			child_order_no,order_no,delivery_model,in_province,in_city,out_province,out_city,out_person,out_time,transfer_person,transfer_reason,transfer_time,create_time
+		)
+		values(
+			#{childOrderNo,jdbcType=VARCHAR},
+			#{orderNo,jdbcType=VARCHAR},
+			#{deliveryModel,jdbcType=INTEGER},
+			#{inProvince,jdbcType=INTEGER},
+			#{inCity,jdbcType=INTEGER},
+			#{outProvince,jdbcType=INTEGER},
+			#{outCity,jdbcType=INTEGER},
+			#{outPerson,jdbcType=INTEGER},
+			#{outTime,jdbcType=TIMESTAMP},
+			#{transferPerson,jdbcType=INTEGER},
+			#{transferReason,jdbcType=VARCHAR},
+			#{transferTime,jdbcType=TIMESTAMP},
+			#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<insert id="saveList" parameterType="java.util.List">
+		insert into otc_order_child(
+			child_order_no,order_no,delivery_model,in_province,in_city,out_province,out_city,out_person,out_time,transfer_person,transfer_reason,transfer_time,create_time
+		)
+		values
+		<foreach collection="list" item="entity" separator=",">
+		(
+			#{childOrderNo,jdbcType=VARCHAR},
+			#{orderNo,jdbcType=VARCHAR},
+			#{deliveryModel,jdbcType=INTEGER},
+			#{inProvince,jdbcType=INTEGER},
+			#{inCity,jdbcType=INTEGER},
+			#{outProvince,jdbcType=INTEGER},
+			#{outCity,jdbcType=INTEGER},
+			#{outPerson,jdbcType=INTEGER},
+			#{outTime,jdbcType=TIMESTAMP},
+			#{transferPerson,jdbcType=INTEGER},
+			#{transferReason,jdbcType=VARCHAR},
+			#{transferTime,jdbcType=TIMESTAMP},
+			#{createTime,jdbcType=TIMESTAMP}
+		)
+		</foreach>
+	</insert>
+	
+	<update id="editEntity" parameterType="com.cm.order.center.dao.po.OtcOrderChildPo">
+		update otc_order_child
+		<set>
+			 <if test="childOrderNo != null">
+		     	child_order_no = #{childOrderNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="orderNo != null">
+		     	order_no = #{orderNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="deliveryModel != null">
+		     	delivery_model = #{deliveryModel,jdbcType=INTEGER},
+		     </if>
+			 <if test="inProvince != null">
+		     	in_province = #{inProvince,jdbcType=INTEGER},
+		     </if>
+			 <if test="inCity != null">
+		     	in_city = #{inCity,jdbcType=INTEGER},
+		     </if>
+			 <if test="outProvince != null">
+		     	out_province = #{outProvince,jdbcType=INTEGER},
+		     </if>
+			 <if test="outCity != null">
+		     	out_city = #{outCity,jdbcType=INTEGER},
+		     </if>
+			 <if test="outPerson != null">
+		     	out_person = #{outPerson,jdbcType=INTEGER},
+		     </if>
+			 <if test="outTime != null">
+		     	out_time = #{outTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="transferPerson != null">
+		     	transfer_person = #{transferPerson,jdbcType=INTEGER},
+		     </if>
+			 <if test="transferReason != null">
+		     	transfer_reason = #{transferReason,jdbcType=VARCHAR},
+		     </if>
+			 <if test="transferTime != null">
+		     	transfer_time = #{transferTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="createTime != null">
+		     	create_time = #{createTime,jdbcType=TIMESTAMP},
+		     </if>
+		</set>
+		where child_seq=#{childSeq,jdbcType=INTEGER}
+	</update>
+	
+	<update id="editRecord" parameterType="com.cm.architecture.jdbc.entity.EditValueAndWhereEntity">
+		update otc_order_child
+		<set>
+			<foreach collection="editValue" index="key" item="item">
+				 <if test="item != null and item.value != null">
+			     	${key} = #{item.value,jdbcType=${item.jdbcType}},
+			     </if>
+			</foreach>
+		</set>
+		<where>
+			<foreach collection="editWhere" index="key" item="item">
+				<if test="item != null and item.value != null">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+			</foreach>
+		</where>
+	</update>
+
+	<delete id="remove" parameterType="com.cm.order.center.dao.po.OtcOrderChildPo">
+		delete from otc_order_child where 
+	    child_seq = #{childSeq,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

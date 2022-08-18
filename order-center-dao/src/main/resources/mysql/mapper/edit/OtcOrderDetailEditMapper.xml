@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cm.order.center.dao.mapper.edit.OtcOrderDetailEditMapper">
+	
+	<insert id="save" parameterType="com.cm.order.center.dao.po.OtcOrderDetailPo">
+		insert into otc_order_detail(
+			user_id,order_no,child_order_no,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time
+		)
+		values(
+			#{userId,jdbcType=INTEGER},
+			#{orderNo,jdbcType=VARCHAR},
+			#{childOrderNo,jdbcType=VARCHAR},
+			#{goodsName,jdbcType=VARCHAR},
+			#{goodsCode,jdbcType=INTEGER},
+			#{goodsImg,jdbcType=VARCHAR},
+			#{goodsPrice,jdbcType=DECIMAL},
+			#{batchPrice,jdbcType=DECIMAL},
+			#{goodsCount,jdbcType=INTEGER},
+			#{goodsMoney,jdbcType=DECIMAL},
+			#{discountRate,jdbcType=DECIMAL},
+			#{discountMoeny,jdbcType=DECIMAL},
+			#{createTime,jdbcType=TIMESTAMP},
+			#{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<insert id="saveList" parameterType="java.util.List">
+		insert into otc_order_detail(
+			user_id,order_no,child_order_no,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time
+		)
+		values
+		<foreach collection="list" item="entity" separator=",">
+		(
+			#{userId,jdbcType=INTEGER},
+			#{orderNo,jdbcType=VARCHAR},
+			#{childOrderNo,jdbcType=VARCHAR},
+			#{goodsName,jdbcType=VARCHAR},
+			#{goodsCode,jdbcType=INTEGER},
+			#{goodsImg,jdbcType=VARCHAR},
+			#{goodsPrice,jdbcType=DECIMAL},
+			#{batchPrice,jdbcType=DECIMAL},
+			#{goodsCount,jdbcType=INTEGER},
+			#{goodsMoney,jdbcType=DECIMAL},
+			#{discountRate,jdbcType=DECIMAL},
+			#{discountMoeny,jdbcType=DECIMAL},
+			#{createTime,jdbcType=TIMESTAMP},
+			#{updateTime,jdbcType=TIMESTAMP}
+		)
+		</foreach>
+	</insert>
+	
+	<update id="editEntity" parameterType="com.cm.order.center.dao.po.OtcOrderDetailPo">
+		update otc_order_detail
+		<set>
+			 <if test="userId != null">
+		     	user_id = #{userId,jdbcType=INTEGER},
+		     </if>
+			 <if test="orderNo != null">
+		     	order_no = #{orderNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="childOrderNo != null">
+		     	child_order_no = #{childOrderNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="goodsName != null">
+		     	goods_name = #{goodsName,jdbcType=VARCHAR},
+		     </if>
+			 <if test="goodsCode != null">
+		     	goods_code = #{goodsCode,jdbcType=INTEGER},
+		     </if>
+			 <if test="goodsImg != null">
+		     	goods_img = #{goodsImg,jdbcType=VARCHAR},
+		     </if>
+			 <if test="goodsPrice != null">
+		     	goods_price = #{goodsPrice,jdbcType=DECIMAL},
+		     </if>
+			 <if test="batchPrice != null">
+		     	batch_price = #{batchPrice,jdbcType=DECIMAL},
+		     </if>
+			 <if test="goodsCount != null">
+		     	goods_count = #{goodsCount,jdbcType=INTEGER},
+		     </if>
+			 <if test="goodsMoney != null">
+		     	goods_money = #{goodsMoney,jdbcType=DECIMAL},
+		     </if>
+			 <if test="discountRate != null">
+		     	discount_rate = #{discountRate,jdbcType=DECIMAL},
+		     </if>
+			 <if test="discountMoeny != null">
+		     	discount_moeny = #{discountMoeny,jdbcType=DECIMAL},
+		     </if>
+			 <if test="createTime != null">
+		     	create_time = #{createTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="updateTime != null">
+		     	update_time = #{updateTime,jdbcType=TIMESTAMP},
+		     </if>
+		</set>
+		where detail_seq=#{detailSeq,jdbcType=INTEGER}
+	</update>
+	
+	<update id="editRecord" parameterType="com.cm.architecture.jdbc.entity.EditValueAndWhereEntity">
+		update otc_order_detail
+		<set>
+			<foreach collection="editValue" index="key" item="item">
+				 <if test="item != null and item.value != null">
+			     	${key} = #{item.value,jdbcType=${item.jdbcType}},
+			     </if>
+			</foreach>
+		</set>
+		<where>
+			<foreach collection="editWhere" index="key" item="item">
+				<if test="item != null and item.value != null">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+			</foreach>
+		</where>
+	</update>
+
+	<delete id="remove" parameterType="com.cm.order.center.dao.po.OtcOrderDetailPo">
+		delete from otc_order_detail where 
+	    detail_seq = #{detailSeq,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

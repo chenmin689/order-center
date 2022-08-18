@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcUserCartSerMapper">
+	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcUserCartPo">
+		<id column="cart_seq" property="cartSeq" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="business_code" property="businessCode" jdbcType="VARCHAR" />
+		<result column="goods_code" property="goodsCode" jdbcType="INTEGER" />
+		<result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+		<result column="goods_img" property="goodsImg" jdbcType="VARCHAR" />
+		<result column="buy_counts" property="buyCounts" jdbcType="INTEGER" />
+		<result column="cart_date" property="cartDate" jdbcType="INTEGER" />
+		<result column="additional" property="additional" jdbcType="VARCHAR" />
+		<result column="sellType" property="selltype" jdbcType="INTEGER" />
+		<result column="activity_code" property="activityCode" jdbcType="VARCHAR" />
+		<result column="activity_price" property="activityPrice" jdbcType="DECIMAL" />
+		<result column="cart_status" property="cartStatus" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcUserCartVo">
+		<id column="cart_seq" property="cartSeq" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="business_code" property="businessCode" jdbcType="VARCHAR" />
+		<result column="goods_code" property="goodsCode" jdbcType="INTEGER" />
+		<result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+		<result column="goods_img" property="goodsImg" jdbcType="VARCHAR" />
+		<result column="buy_counts" property="buyCounts" jdbcType="INTEGER" />
+		<result column="cart_date" property="cartDate" jdbcType="INTEGER" />
+		<result column="additional" property="additional" jdbcType="VARCHAR" />
+		<result column="sellType" property="selltype" jdbcType="INTEGER" />
+		<result column="activity_code" property="activityCode" jdbcType="VARCHAR" />
+		<result column="activity_price" property="activityPrice" jdbcType="DECIMAL" />
+		<result column="cart_status" property="cartStatus" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select 
+		 cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sellType,activity_code,activity_price,cart_status,create_time,update_time 
+		from otc_user_cart 
+		where cart_seq = #{cartSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcUserCartPo">
+		select  
+		 cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sellType,activity_code,activity_price,cart_status,create_time,update_time 
+		from otc_user_cart 
+		<where>
+				<if test="userId != null">
+					AND user_id = #{userId,jdbcType=INTEGER}
+				</if>
+				<if test="businessCode != null">
+					AND business_code = #{businessCode,jdbcType=VARCHAR}
+				</if>
+				<if test="goodsCode != null">
+					AND goods_code = #{goodsCode,jdbcType=INTEGER}
+				</if>
+				<if test="goodsName != null">
+					AND goods_name = #{goodsName,jdbcType=VARCHAR}
+				</if>
+				<if test="goodsImg != null">
+					AND goods_img = #{goodsImg,jdbcType=VARCHAR}
+				</if>
+				<if test="buyCounts != null">
+					AND buy_counts = #{buyCounts,jdbcType=INTEGER}
+				</if>
+				<if test="cartDate != null">
+					AND cart_date = #{cartDate,jdbcType=INTEGER}
+				</if>
+				<if test="additional != null">
+					AND additional = #{additional,jdbcType=VARCHAR}
+				</if>
+				<if test="selltype != null">
+					AND sellType = #{selltype,jdbcType=INTEGER}
+				</if>
+				<if test="activityCode != null">
+					AND activity_code = #{activityCode,jdbcType=VARCHAR}
+				</if>
+				<if test="activityPrice != null">
+					AND activity_price = #{activityPrice,jdbcType=DECIMAL}
+				</if>
+				<if test="cartStatus != null">
+					AND cart_status = #{cartStatus,jdbcType=INTEGER}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Long">
+		select 
+		 cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sellType,activity_code,activity_price,cart_status,create_time,update_time 
+		from otc_user_cart 
+		where cart_seq = #{cartSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcUserCartPo">
+		select cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sellType,activity_code,activity_price,cart_status,create_time,update_time from otc_user_cart
+		<where>
+				<if test="userId != null">
+					AND user_id = #{userId,jdbcType=INTEGER}
+				</if>
+				<if test="businessCode != null">
+					AND business_code = #{businessCode,jdbcType=VARCHAR}
+				</if>
+				<if test="goodsCode != null">
+					AND goods_code = #{goodsCode,jdbcType=INTEGER}
+				</if>
+				<if test="goodsName != null">
+					AND goods_name = #{goodsName,jdbcType=VARCHAR}
+				</if>
+				<if test="goodsImg != null">
+					AND goods_img = #{goodsImg,jdbcType=VARCHAR}
+				</if>
+				<if test="buyCounts != null">
+					AND buy_counts = #{buyCounts,jdbcType=INTEGER}
+				</if>
+				<if test="cartDate != null">
+					AND cart_date = #{cartDate,jdbcType=INTEGER}
+				</if>
+				<if test="additional != null">
+					AND additional = #{additional,jdbcType=VARCHAR}
+				</if>
+				<if test="selltype != null">
+					AND sellType = #{selltype,jdbcType=INTEGER}
+				</if>
+				<if test="activityCode != null">
+					AND activity_code = #{activityCode,jdbcType=VARCHAR}
+				</if>
+				<if test="activityPrice != null">
+					AND activity_price = #{activityPrice,jdbcType=DECIMAL}
+				</if>
+				<if test="cartStatus != null">
+					AND cart_status = #{cartStatus,jdbcType=INTEGER}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryPageList" resultMap="BaseResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_user_cart 
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+	
+	<select id="queryPageCounts" resultType="java.lang.Integer" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select count(cart_seq) from otc_user_cart
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="queryPageVoList" resultMap="BaseVoResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_user_cart
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+</mapper>

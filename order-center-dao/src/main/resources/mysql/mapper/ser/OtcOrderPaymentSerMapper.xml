@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcOrderPaymentSerMapper">
+	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcOrderPaymentPo">
+		<id column="pay_no" property="payNo" jdbcType="INTEGER" />
+		<result column="trans_no" property="transNo" jdbcType="VARCHAR" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="trans_money" property="transMoney" jdbcType="DECIMAL" />
+		<result column="pay_model" property="payModel" jdbcType="INTEGER" />
+		<result column="supplier_no" property="supplierNo" jdbcType="VARCHAR" />
+		<result column="merchant_code" property="merchantCode" jdbcType="VARCHAR" />
+		<result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+		<result column="merchant_no" property="merchantNo" jdbcType="VARCHAR" />
+		<result column="trans_detail" property="transDetail" jdbcType="VARCHAR" />
+		<result column="trans_status" property="transStatus" jdbcType="INTEGER" />
+		<result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+		<result column="lock_flg" property="lockFlg" jdbcType="INTEGER" />
+		<result column="run_count" property="runCount" jdbcType="INTEGER" />
+		<result column="lock_time" property="lockTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcOrderPaymentVo">
+		<id column="pay_no" property="payNo" jdbcType="INTEGER" />
+		<result column="trans_no" property="transNo" jdbcType="VARCHAR" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="trans_money" property="transMoney" jdbcType="DECIMAL" />
+		<result column="pay_model" property="payModel" jdbcType="INTEGER" />
+		<result column="supplier_no" property="supplierNo" jdbcType="VARCHAR" />
+		<result column="merchant_code" property="merchantCode" jdbcType="VARCHAR" />
+		<result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+		<result column="merchant_no" property="merchantNo" jdbcType="VARCHAR" />
+		<result column="trans_detail" property="transDetail" jdbcType="VARCHAR" />
+		<result column="trans_status" property="transStatus" jdbcType="INTEGER" />
+		<result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+		<result column="lock_flg" property="lockFlg" jdbcType="INTEGER" />
+		<result column="run_count" property="runCount" jdbcType="INTEGER" />
+		<result column="lock_time" property="lockTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select 
+		 pay_no,trans_no,order_no,trans_money,pay_model,supplier_no,merchant_code,bank_code,merchant_no,trans_detail,trans_status,pay_time,lock_flg,run_count,lock_time,create_time,update_time 
+		from otc_order_payment 
+		where pay_no = #{payNo,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderPaymentPo">
+		select  
+		 pay_no,trans_no,order_no,trans_money,pay_model,supplier_no,merchant_code,bank_code,merchant_no,trans_detail,trans_status,pay_time,lock_flg,run_count,lock_time,create_time,update_time 
+		from otc_order_payment 
+		<where>
+				<if test="transNo != null">
+					AND trans_no = #{transNo,jdbcType=VARCHAR}
+				</if>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="transMoney != null">
+					AND trans_money = #{transMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="payModel != null">
+					AND pay_model = #{payModel,jdbcType=INTEGER}
+				</if>
+				<if test="supplierNo != null">
+					AND supplier_no = #{supplierNo,jdbcType=VARCHAR}
+				</if>
+				<if test="merchantCode != null">
+					AND merchant_code = #{merchantCode,jdbcType=VARCHAR}
+				</if>
+				<if test="bankCode != null">
+					AND bank_code = #{bankCode,jdbcType=VARCHAR}
+				</if>
+				<if test="merchantNo != null">
+					AND merchant_no = #{merchantNo,jdbcType=VARCHAR}
+				</if>
+				<if test="transDetail != null">
+					AND trans_detail = #{transDetail,jdbcType=VARCHAR}
+				</if>
+				<if test="transStatus != null">
+					AND trans_status = #{transStatus,jdbcType=INTEGER}
+				</if>
+				<if test="payTime != null">
+					AND pay_time = #{payTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="lockFlg != null">
+					AND lock_flg = #{lockFlg,jdbcType=INTEGER}
+				</if>
+				<if test="runCount != null">
+					AND run_count = #{runCount,jdbcType=INTEGER}
+				</if>
+				<if test="lockTime != null">
+					AND lock_time = #{lockTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Long">
+		select 
+		 pay_no,trans_no,order_no,trans_money,pay_model,supplier_no,merchant_code,bank_code,merchant_no,trans_detail,trans_status,pay_time,lock_flg,run_count,lock_time,create_time,update_time 
+		from otc_order_payment 
+		where pay_no = #{payNo,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderPaymentPo">
+		select pay_no,trans_no,order_no,trans_money,pay_model,supplier_no,merchant_code,bank_code,merchant_no,trans_detail,trans_status,pay_time,lock_flg,run_count,lock_time,create_time,update_time from otc_order_payment
+		<where>
+				<if test="transNo != null">
+					AND trans_no = #{transNo,jdbcType=VARCHAR}
+				</if>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="transMoney != null">
+					AND trans_money = #{transMoney,jdbcType=DECIMAL}
+				</if>
+				<if test="payModel != null">
+					AND pay_model = #{payModel,jdbcType=INTEGER}
+				</if>
+				<if test="supplierNo != null">
+					AND supplier_no = #{supplierNo,jdbcType=VARCHAR}
+				</if>
+				<if test="merchantCode != null">
+					AND merchant_code = #{merchantCode,jdbcType=VARCHAR}
+				</if>
+				<if test="bankCode != null">
+					AND bank_code = #{bankCode,jdbcType=VARCHAR}
+				</if>
+				<if test="merchantNo != null">
+					AND merchant_no = #{merchantNo,jdbcType=VARCHAR}
+				</if>
+				<if test="transDetail != null">
+					AND trans_detail = #{transDetail,jdbcType=VARCHAR}
+				</if>
+				<if test="transStatus != null">
+					AND trans_status = #{transStatus,jdbcType=INTEGER}
+				</if>
+				<if test="payTime != null">
+					AND pay_time = #{payTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="lockFlg != null">
+					AND lock_flg = #{lockFlg,jdbcType=INTEGER}
+				</if>
+				<if test="runCount != null">
+					AND run_count = #{runCount,jdbcType=INTEGER}
+				</if>
+				<if test="lockTime != null">
+					AND lock_time = #{lockTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryPageList" resultMap="BaseResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order_payment 
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+	
+	<select id="queryPageCounts" resultType="java.lang.Integer" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select count(pay_no) from otc_order_payment
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="queryPageVoList" resultMap="BaseVoResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order_payment
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+</mapper>

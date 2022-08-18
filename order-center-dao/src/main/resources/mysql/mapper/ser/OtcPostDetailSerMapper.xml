@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcPostDetailSerMapper">
+	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcPostDetailPo">
+		<id column="post_seq" property="postSeq" jdbcType="CHAR" />
+		<result column="contract_no" property="contractNo" jdbcType="VARCHAR" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
+		<result column="post_no" property="postNo" jdbcType="VARCHAR" />
+		<result column="post_type" property="postType" jdbcType="INTEGER" />
+		<result column="post_info" property="postInfo" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcPostDetailVo">
+		<id column="post_seq" property="postSeq" jdbcType="CHAR" />
+		<result column="contract_no" property="contractNo" jdbcType="VARCHAR" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
+		<result column="post_no" property="postNo" jdbcType="VARCHAR" />
+		<result column="post_type" property="postType" jdbcType="INTEGER" />
+		<result column="post_info" property="postInfo" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select 
+		 post_seq,contract_no,order_no,child_order_no,post_no,post_type,post_info,create_time 
+		from otc_post_detail 
+		where post_seq = #{postSeq,jdbcType=CHAR}
+	</select>
+	
+	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcPostDetailPo">
+		select  
+		 post_seq,contract_no,order_no,child_order_no,post_no,post_type,post_info,create_time 
+		from otc_post_detail 
+		<where>
+				<if test="contractNo != null">
+					AND contract_no = #{contractNo,jdbcType=VARCHAR}
+				</if>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="childOrderNo != null">
+					AND child_order_no = #{childOrderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="postNo != null">
+					AND post_no = #{postNo,jdbcType=VARCHAR}
+				</if>
+				<if test="postType != null">
+					AND post_type = #{postType,jdbcType=INTEGER}
+				</if>
+				<if test="postInfo != null">
+					AND post_info = #{postInfo,jdbcType=VARCHAR}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.String">
+		select 
+		 post_seq,contract_no,order_no,child_order_no,post_no,post_type,post_info,create_time 
+		from otc_post_detail 
+		where post_seq = #{postSeq,jdbcType=CHAR}
+	</select>
+	
+	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcPostDetailPo">
+		select post_seq,contract_no,order_no,child_order_no,post_no,post_type,post_info,create_time from otc_post_detail
+		<where>
+				<if test="contractNo != null">
+					AND contract_no = #{contractNo,jdbcType=VARCHAR}
+				</if>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="childOrderNo != null">
+					AND child_order_no = #{childOrderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="postNo != null">
+					AND post_no = #{postNo,jdbcType=VARCHAR}
+				</if>
+				<if test="postType != null">
+					AND post_type = #{postType,jdbcType=INTEGER}
+				</if>
+				<if test="postInfo != null">
+					AND post_info = #{postInfo,jdbcType=VARCHAR}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryPageList" resultMap="BaseResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_post_detail 
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+	
+	<select id="queryPageCounts" resultType="java.lang.Integer" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select count(post_seq) from otc_post_detail
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="queryPageVoList" resultMap="BaseVoResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_post_detail
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+</mapper>

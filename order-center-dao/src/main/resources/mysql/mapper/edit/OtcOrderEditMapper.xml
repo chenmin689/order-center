@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cm.order.center.dao.mapper.edit.OtcOrderEditMapper">
+	
+	<insert id="save" parameterType="com.cm.order.center.dao.po.OtcOrderPo">
+		insert into otc_order(
+			order_no,salesman,order_type,business_code,order_money,discount_rate,discount_money,prefer_money,post_money,recieve_addr,pay_money,pay_model,pay_time,send_time,finish_time,order_status,create_time,update_time
+		)
+		values(
+			#{orderNo,jdbcType=VARCHAR},
+			#{salesman,jdbcType=INTEGER},
+			#{orderType,jdbcType=INTEGER},
+			#{businessCode,jdbcType=VARCHAR},
+			#{orderMoney,jdbcType=DECIMAL},
+			#{discountRate,jdbcType=DECIMAL},
+			#{discountMoney,jdbcType=DECIMAL},
+			#{preferMoney,jdbcType=DECIMAL},
+			#{postMoney,jdbcType=DECIMAL},
+			#{recieveAddr,jdbcType=CHAR},
+			#{payMoney,jdbcType=DECIMAL},
+			#{payModel,jdbcType=INTEGER},
+			#{payTime,jdbcType=TIMESTAMP},
+			#{sendTime,jdbcType=TIMESTAMP},
+			#{finishTime,jdbcType=TIMESTAMP},
+			#{orderStatus,jdbcType=INTEGER},
+			#{createTime,jdbcType=TIMESTAMP},
+			#{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<insert id="saveList" parameterType="java.util.List">
+		insert into otc_order(
+			order_no,salesman,order_type,business_code,order_money,discount_rate,discount_money,prefer_money,post_money,recieve_addr,pay_money,pay_model,pay_time,send_time,finish_time,order_status,create_time,update_time
+		)
+		values
+		<foreach collection="list" item="entity" separator=",">
+		(
+			#{orderNo,jdbcType=VARCHAR},
+			#{salesman,jdbcType=INTEGER},
+			#{orderType,jdbcType=INTEGER},
+			#{businessCode,jdbcType=VARCHAR},
+			#{orderMoney,jdbcType=DECIMAL},
+			#{discountRate,jdbcType=DECIMAL},
+			#{discountMoney,jdbcType=DECIMAL},
+			#{preferMoney,jdbcType=DECIMAL},
+			#{postMoney,jdbcType=DECIMAL},
+			#{recieveAddr,jdbcType=CHAR},
+			#{payMoney,jdbcType=DECIMAL},
+			#{payModel,jdbcType=INTEGER},
+			#{payTime,jdbcType=TIMESTAMP},
+			#{sendTime,jdbcType=TIMESTAMP},
+			#{finishTime,jdbcType=TIMESTAMP},
+			#{orderStatus,jdbcType=INTEGER},
+			#{createTime,jdbcType=TIMESTAMP},
+			#{updateTime,jdbcType=TIMESTAMP}
+		)
+		</foreach>
+	</insert>
+	
+	<update id="editEntity" parameterType="com.cm.order.center.dao.po.OtcOrderPo">
+		update otc_order
+		<set>
+			 <if test="orderNo != null">
+		     	order_no = #{orderNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="salesman != null">
+		     	salesman = #{salesman,jdbcType=INTEGER},
+		     </if>
+			 <if test="orderType != null">
+		     	order_type = #{orderType,jdbcType=INTEGER},
+		     </if>
+			 <if test="businessCode != null">
+		     	business_code = #{businessCode,jdbcType=VARCHAR},
+		     </if>
+			 <if test="orderMoney != null">
+		     	order_money = #{orderMoney,jdbcType=DECIMAL},
+		     </if>
+			 <if test="discountRate != null">
+		     	discount_rate = #{discountRate,jdbcType=DECIMAL},
+		     </if>
+			 <if test="discountMoney != null">
+		     	discount_money = #{discountMoney,jdbcType=DECIMAL},
+		     </if>
+			 <if test="preferMoney != null">
+		     	prefer_money = #{preferMoney,jdbcType=DECIMAL},
+		     </if>
+			 <if test="postMoney != null">
+		     	post_money = #{postMoney,jdbcType=DECIMAL},
+		     </if>
+			 <if test="recieveAddr != null">
+		     	recieve_addr = #{recieveAddr,jdbcType=CHAR},
+		     </if>
+			 <if test="payMoney != null">
+		     	pay_money = #{payMoney,jdbcType=DECIMAL},
+		     </if>
+			 <if test="payModel != null">
+		     	pay_model = #{payModel,jdbcType=INTEGER},
+		     </if>
+			 <if test="payTime != null">
+		     	pay_time = #{payTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="sendTime != null">
+		     	send_time = #{sendTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="finishTime != null">
+		     	finish_time = #{finishTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="orderStatus != null">
+		     	order_status = #{orderStatus,jdbcType=INTEGER},
+		     </if>
+			 <if test="createTime != null">
+		     	create_time = #{createTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="updateTime != null">
+		     	update_time = #{updateTime,jdbcType=TIMESTAMP},
+		     </if>
+		</set>
+		where order_seq=#{orderSeq,jdbcType=INTEGER}
+	</update>
+	
+	<update id="editRecord" parameterType="com.cm.architecture.jdbc.entity.EditValueAndWhereEntity">
+		update otc_order
+		<set>
+			<foreach collection="editValue" index="key" item="item">
+				 <if test="item != null and item.value != null">
+			     	${key} = #{item.value,jdbcType=${item.jdbcType}},
+			     </if>
+			</foreach>
+		</set>
+		<where>
+			<foreach collection="editWhere" index="key" item="item">
+				<if test="item != null and item.value != null">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+			</foreach>
+		</where>
+	</update>
+
+	<delete id="remove" parameterType="com.cm.order.center.dao.po.OtcOrderPo">
+		delete from otc_order where 
+	    order_seq = #{orderSeq,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

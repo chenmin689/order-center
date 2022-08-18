@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcOrderContractSerMapper">
+	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcOrderContractPo">
+		<id column="contract_seq" property="contractSeq" jdbcType="INTEGER" />
+		<result column="contract_no" property="contractNo" jdbcType="VARCHAR" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
+		<result column="reciever" property="reciever" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="recieve_addr" property="recieveAddr" jdbcType="VARCHAR" />
+		<result column="delivery_model" property="deliveryModel" jdbcType="INTEGER" />
+		<result column="delivery_person" property="deliveryPerson" jdbcType="VARCHAR" />
+		<result column="delivery_mobile" property="deliveryMobile" jdbcType="VARCHAR" />
+		<result column="third_post" property="thirdPost" jdbcType="VARCHAR" />
+		<result column="post_no" property="postNo" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcOrderContractVo">
+		<id column="contract_seq" property="contractSeq" jdbcType="INTEGER" />
+		<result column="contract_no" property="contractNo" jdbcType="VARCHAR" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
+		<result column="reciever" property="reciever" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="recieve_addr" property="recieveAddr" jdbcType="VARCHAR" />
+		<result column="delivery_model" property="deliveryModel" jdbcType="INTEGER" />
+		<result column="delivery_person" property="deliveryPerson" jdbcType="VARCHAR" />
+		<result column="delivery_mobile" property="deliveryMobile" jdbcType="VARCHAR" />
+		<result column="third_post" property="thirdPost" jdbcType="VARCHAR" />
+		<result column="post_no" property="postNo" jdbcType="VARCHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select 
+		 contract_seq,contract_no,order_no,child_order_no,reciever,telephone,recieve_addr,delivery_model,delivery_person,delivery_mobile,third_post,post_no,update_time,create_time 
+		from otc_order_contract 
+		where contract_seq = #{contractSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderContractPo">
+		select  
+		 contract_seq,contract_no,order_no,child_order_no,reciever,telephone,recieve_addr,delivery_model,delivery_person,delivery_mobile,third_post,post_no,update_time,create_time 
+		from otc_order_contract 
+		<where>
+				<if test="contractNo != null">
+					AND contract_no = #{contractNo,jdbcType=VARCHAR}
+				</if>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="childOrderNo != null">
+					AND child_order_no = #{childOrderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="reciever != null">
+					AND reciever = #{reciever,jdbcType=VARCHAR}
+				</if>
+				<if test="telephone != null">
+					AND telephone = #{telephone,jdbcType=VARCHAR}
+				</if>
+				<if test="recieveAddr != null">
+					AND recieve_addr = #{recieveAddr,jdbcType=VARCHAR}
+				</if>
+				<if test="deliveryModel != null">
+					AND delivery_model = #{deliveryModel,jdbcType=INTEGER}
+				</if>
+				<if test="deliveryPerson != null">
+					AND delivery_person = #{deliveryPerson,jdbcType=VARCHAR}
+				</if>
+				<if test="deliveryMobile != null">
+					AND delivery_mobile = #{deliveryMobile,jdbcType=VARCHAR}
+				</if>
+				<if test="thirdPost != null">
+					AND third_post = #{thirdPost,jdbcType=VARCHAR}
+				</if>
+				<if test="postNo != null">
+					AND post_no = #{postNo,jdbcType=VARCHAR}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Long">
+		select 
+		 contract_seq,contract_no,order_no,child_order_no,reciever,telephone,recieve_addr,delivery_model,delivery_person,delivery_mobile,third_post,post_no,update_time,create_time 
+		from otc_order_contract 
+		where contract_seq = #{contractSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderContractPo">
+		select contract_seq,contract_no,order_no,child_order_no,reciever,telephone,recieve_addr,delivery_model,delivery_person,delivery_mobile,third_post,post_no,update_time,create_time from otc_order_contract
+		<where>
+				<if test="contractNo != null">
+					AND contract_no = #{contractNo,jdbcType=VARCHAR}
+				</if>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="childOrderNo != null">
+					AND child_order_no = #{childOrderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="reciever != null">
+					AND reciever = #{reciever,jdbcType=VARCHAR}
+				</if>
+				<if test="telephone != null">
+					AND telephone = #{telephone,jdbcType=VARCHAR}
+				</if>
+				<if test="recieveAddr != null">
+					AND recieve_addr = #{recieveAddr,jdbcType=VARCHAR}
+				</if>
+				<if test="deliveryModel != null">
+					AND delivery_model = #{deliveryModel,jdbcType=INTEGER}
+				</if>
+				<if test="deliveryPerson != null">
+					AND delivery_person = #{deliveryPerson,jdbcType=VARCHAR}
+				</if>
+				<if test="deliveryMobile != null">
+					AND delivery_mobile = #{deliveryMobile,jdbcType=VARCHAR}
+				</if>
+				<if test="thirdPost != null">
+					AND third_post = #{thirdPost,jdbcType=VARCHAR}
+				</if>
+				<if test="postNo != null">
+					AND post_no = #{postNo,jdbcType=VARCHAR}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryPageList" resultMap="BaseResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order_contract 
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+	
+	<select id="queryPageCounts" resultType="java.lang.Integer" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select count(contract_seq) from otc_order_contract
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="queryPageVoList" resultMap="BaseVoResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order_contract
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+</mapper>

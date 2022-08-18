@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cm.order.center.dao.mapper.edit.OtcOrderContractEditMapper">
+	
+	<insert id="save" parameterType="com.cm.order.center.dao.po.OtcOrderContractPo">
+		insert into otc_order_contract(
+			contract_no,order_no,child_order_no,reciever,telephone,recieve_addr,delivery_model,delivery_person,delivery_mobile,third_post,post_no,update_time,create_time
+		)
+		values(
+			#{contractNo,jdbcType=VARCHAR},
+			#{orderNo,jdbcType=VARCHAR},
+			#{childOrderNo,jdbcType=VARCHAR},
+			#{reciever,jdbcType=VARCHAR},
+			#{telephone,jdbcType=VARCHAR},
+			#{recieveAddr,jdbcType=VARCHAR},
+			#{deliveryModel,jdbcType=INTEGER},
+			#{deliveryPerson,jdbcType=VARCHAR},
+			#{deliveryMobile,jdbcType=VARCHAR},
+			#{thirdPost,jdbcType=VARCHAR},
+			#{postNo,jdbcType=VARCHAR},
+			#{updateTime,jdbcType=TIMESTAMP},
+			#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<insert id="saveList" parameterType="java.util.List">
+		insert into otc_order_contract(
+			contract_no,order_no,child_order_no,reciever,telephone,recieve_addr,delivery_model,delivery_person,delivery_mobile,third_post,post_no,update_time,create_time
+		)
+		values
+		<foreach collection="list" item="entity" separator=",">
+		(
+			#{contractNo,jdbcType=VARCHAR},
+			#{orderNo,jdbcType=VARCHAR},
+			#{childOrderNo,jdbcType=VARCHAR},
+			#{reciever,jdbcType=VARCHAR},
+			#{telephone,jdbcType=VARCHAR},
+			#{recieveAddr,jdbcType=VARCHAR},
+			#{deliveryModel,jdbcType=INTEGER},
+			#{deliveryPerson,jdbcType=VARCHAR},
+			#{deliveryMobile,jdbcType=VARCHAR},
+			#{thirdPost,jdbcType=VARCHAR},
+			#{postNo,jdbcType=VARCHAR},
+			#{updateTime,jdbcType=TIMESTAMP},
+			#{createTime,jdbcType=TIMESTAMP}
+		)
+		</foreach>
+	</insert>
+	
+	<update id="editEntity" parameterType="com.cm.order.center.dao.po.OtcOrderContractPo">
+		update otc_order_contract
+		<set>
+			 <if test="contractNo != null">
+		     	contract_no = #{contractNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="orderNo != null">
+		     	order_no = #{orderNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="childOrderNo != null">
+		     	child_order_no = #{childOrderNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="reciever != null">
+		     	reciever = #{reciever,jdbcType=VARCHAR},
+		     </if>
+			 <if test="telephone != null">
+		     	telephone = #{telephone,jdbcType=VARCHAR},
+		     </if>
+			 <if test="recieveAddr != null">
+		     	recieve_addr = #{recieveAddr,jdbcType=VARCHAR},
+		     </if>
+			 <if test="deliveryModel != null">
+		     	delivery_model = #{deliveryModel,jdbcType=INTEGER},
+		     </if>
+			 <if test="deliveryPerson != null">
+		     	delivery_person = #{deliveryPerson,jdbcType=VARCHAR},
+		     </if>
+			 <if test="deliveryMobile != null">
+		     	delivery_mobile = #{deliveryMobile,jdbcType=VARCHAR},
+		     </if>
+			 <if test="thirdPost != null">
+		     	third_post = #{thirdPost,jdbcType=VARCHAR},
+		     </if>
+			 <if test="postNo != null">
+		     	post_no = #{postNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="updateTime != null">
+		     	update_time = #{updateTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="createTime != null">
+		     	create_time = #{createTime,jdbcType=TIMESTAMP},
+		     </if>
+		</set>
+		where contract_seq=#{contractSeq,jdbcType=INTEGER}
+	</update>
+	
+	<update id="editRecord" parameterType="com.cm.architecture.jdbc.entity.EditValueAndWhereEntity">
+		update otc_order_contract
+		<set>
+			<foreach collection="editValue" index="key" item="item">
+				 <if test="item != null and item.value != null">
+			     	${key} = #{item.value,jdbcType=${item.jdbcType}},
+			     </if>
+			</foreach>
+		</set>
+		<where>
+			<foreach collection="editWhere" index="key" item="item">
+				<if test="item != null and item.value != null">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+			</foreach>
+		</where>
+	</update>
+
+	<delete id="remove" parameterType="com.cm.order.center.dao.po.OtcOrderContractPo">
+		delete from otc_order_contract where 
+	    contract_seq = #{contractSeq,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>
