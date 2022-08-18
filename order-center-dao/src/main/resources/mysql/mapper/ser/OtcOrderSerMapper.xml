@@ -12,7 +12,7 @@
 		<result column="discount_money" property="discountMoney" jdbcType="DECIMAL" />
 		<result column="prefer_money" property="preferMoney" jdbcType="DECIMAL" />
 		<result column="post_money" property="postMoney" jdbcType="DECIMAL" />
-		<result column="recieve_addr" property="recieveAddr" jdbcType="CHAR" />
+		<result column="recieve_addr" property="recieveAddr" jdbcType="INTEGER" />
 		<result column="pay_money" property="payMoney" jdbcType="DECIMAL" />
 		<result column="pay_model" property="payModel" jdbcType="INTEGER" />
 		<result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
@@ -33,7 +33,7 @@
 		<result column="discount_money" property="discountMoney" jdbcType="DECIMAL" />
 		<result column="prefer_money" property="preferMoney" jdbcType="DECIMAL" />
 		<result column="post_money" property="postMoney" jdbcType="DECIMAL" />
-		<result column="recieve_addr" property="recieveAddr" jdbcType="CHAR" />
+		<result column="recieve_addr" property="recieveAddr" jdbcType="INTEGER" />
 		<result column="pay_money" property="payMoney" jdbcType="DECIMAL" />
 		<result column="pay_model" property="payModel" jdbcType="INTEGER" />
 		<result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
@@ -84,7 +84,7 @@
 					AND post_money = #{postMoney,jdbcType=DECIMAL}
 				</if>
 				<if test="recieveAddr != null">
-					AND recieve_addr = #{recieveAddr,jdbcType=CHAR}
+					AND recieve_addr = #{recieveAddr,jdbcType=INTEGER}
 				</if>
 				<if test="payMoney != null">
 					AND pay_money = #{payMoney,jdbcType=DECIMAL}
@@ -151,7 +151,7 @@
 					AND post_money = #{postMoney,jdbcType=DECIMAL}
 				</if>
 				<if test="recieveAddr != null">
-					AND recieve_addr = #{recieveAddr,jdbcType=CHAR}
+					AND recieve_addr = #{recieveAddr,jdbcType=INTEGER}
 				</if>
 				<if test="payMoney != null">
 					AND pay_money = #{payMoney,jdbcType=DECIMAL}

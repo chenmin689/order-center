@@ -68,7 +68,7 @@ public class OrderServiceImpl extends AbstractServiceImpl implements OrderServic
 			po.setDiscountMoney(requestBean.getBigDecimalValue("discountMoney")); 
 			po.setPreferMoney(requestBean.getBigDecimalValue("preferMoney")); 
 			po.setPostMoney(requestBean.getBigDecimalValue("postMoney")); 
-			po.setRecieveAddr(requestBean.getStringValue("recieveAddr")); 
+			po.setRecieveAddr(requestBean.getIntegerValue("recieveAddr")); 
 			po.setPayMoney(requestBean.getBigDecimalValue("payMoney")); 
 			po.setPayModel(requestBean.getIntegerValue("payModel")); 
 			po.setPayTime(new Date()); 
@@ -100,7 +100,7 @@ public class OrderServiceImpl extends AbstractServiceImpl implements OrderServic
 			po.setDiscountMoney(requestBean.getBigDecimalValue("discountMoney")); 
 			po.setPreferMoney(requestBean.getBigDecimalValue("preferMoney")); 
 			po.setPostMoney(requestBean.getBigDecimalValue("postMoney")); 
-			po.setRecieveAddr(requestBean.getStringValue("recieveAddr")); 
+			po.setRecieveAddr(requestBean.getIntegerValue("recieveAddr")); 
 			po.setPayMoney(requestBean.getBigDecimalValue("payMoney")); 
 			po.setPayModel(requestBean.getIntegerValue("payModel")); 
 			po.setPayTime(new Date()); 

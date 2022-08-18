@@ -16,7 +16,7 @@
 			#{discountMoney,jdbcType=DECIMAL},
 			#{preferMoney,jdbcType=DECIMAL},
 			#{postMoney,jdbcType=DECIMAL},
-			#{recieveAddr,jdbcType=CHAR},
+			#{recieveAddr,jdbcType=INTEGER},
 			#{payMoney,jdbcType=DECIMAL},
 			#{payModel,jdbcType=INTEGER},
 			#{payTime,jdbcType=TIMESTAMP},
@@ -44,7 +44,7 @@
 			#{discountMoney,jdbcType=DECIMAL},
 			#{preferMoney,jdbcType=DECIMAL},
 			#{postMoney,jdbcType=DECIMAL},
-			#{recieveAddr,jdbcType=CHAR},
+			#{recieveAddr,jdbcType=INTEGER},
 			#{payMoney,jdbcType=DECIMAL},
 			#{payModel,jdbcType=INTEGER},
 			#{payTime,jdbcType=TIMESTAMP},
@@ -88,7 +88,7 @@
 		     	post_money = #{postMoney,jdbcType=DECIMAL},
 		     </if>
 			 <if test="recieveAddr != null">
-		     	recieve_addr = #{recieveAddr,jdbcType=CHAR},
+		     	recieve_addr = #{recieveAddr,jdbcType=INTEGER},
 		     </if>
 			 <if test="payMoney != null">
 		     	pay_money = #{payMoney,jdbcType=DECIMAL},

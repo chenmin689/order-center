@@ -3,7 +3,7 @@
 * @Package com.cm.order.center.dao.po
 * @Description: 会员订单管理--实体类
 * @author chenmin
-* @date Thu Aug 18 10:31:54 CST 2022
+* @date Thu Aug 18 11:08:17 CST 2022
 * @version V1.0
 */
 
@@ -20,7 +20,7 @@ import lombok.Data;
  * @ClassName: OtcOrderPo
  * @Description: 会员订单管理--实体类
  * @author chenmin
- * @date Thu Aug 18 10:31:54 CST 2022
+ * @date Thu Aug 18 11:08:17 CST 2022
  */
 @Data 
 @TableNames(tableName="otc_order",serMapperName="otcOrderSerMapper",editMapperName="otcOrderEditMapper")
@@ -69,8 +69,8 @@ public class OtcOrderPo extends AbstractPojo {
 	private BigDecimal postMoney;
 
 	/**收货地址:recieve_addr*/
-	@TableColumnName(columnName="recieve_addr",jdbcType="CHAR")
-	private String recieveAddr;
+	@TableColumnName(columnName="recieve_addr",jdbcType="INTEGER")
+	private Integer recieveAddr;
 
 	/**支付金额:pay_money*/
 	@TableColumnName(columnName="pay_money",jdbcType="DECIMAL")
