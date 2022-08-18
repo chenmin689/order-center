@@ -40,7 +40,7 @@ create table otc_order
     discount_money       decimal(10,2) not null comment '折后金额',
     prefer_money         decimal(6,2) not null comment '优惠金额',
     post_money           decimal(6,2) not null comment '运输费用',
-    recieve_addr         char(10) not null comment '收货地址',
+    recieve_addr         int not null comment '收货地址',
     pay_money            decimal(10,2) not null comment '支付金额',
     pay_model            tinyint not null comment '支付方式：1，在线支付；2，货到付款',
     pay_time             datetime comment '支付时间',
