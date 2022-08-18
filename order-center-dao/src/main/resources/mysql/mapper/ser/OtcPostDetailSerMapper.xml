@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcPostDetailSerMapper">
 	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcPostDetailPo">
-		<id column="post_seq" property="postSeq" jdbcType="CHAR" />
+		<id column="post_seq" property="postSeq" jdbcType="INTEGER" />
 		<result column="contract_no" property="contractNo" jdbcType="VARCHAR" />
 		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
 		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcPostDetailVo">
-		<id column="post_seq" property="postSeq" jdbcType="CHAR" />
+		<id column="post_seq" property="postSeq" jdbcType="INTEGER" />
 		<result column="contract_no" property="contractNo" jdbcType="VARCHAR" />
 		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
 		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
@@ -22,11 +22,11 @@
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	
-	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.String">
+	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select 
 		 post_seq,contract_no,order_no,child_order_no,post_no,post_type,post_info,create_time 
 		from otc_post_detail 
-		where post_seq = #{postSeq,jdbcType=CHAR}
+		where post_seq = #{postSeq,jdbcType=INTEGER}
 	</select>
 	
 	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcPostDetailPo">
@@ -58,11 +58,11 @@
 		</where>
 	</select>
 	
-	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.String">
+	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Long">
 		select 
 		 post_seq,contract_no,order_no,child_order_no,post_no,post_type,post_info,create_time 
 		from otc_post_detail 
-		where post_seq = #{postSeq,jdbcType=CHAR}
+		where post_seq = #{postSeq,jdbcType=INTEGER}
 	</select>
 	
 	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcPostDetailPo">

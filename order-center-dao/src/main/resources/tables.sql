@@ -33,7 +33,7 @@ create table otc_order
     order_seq            bigint not null auto_increment comment '订单序列',
     order_no             varchar(32) not null comment '订单号',
     salesman             int not null comment '业务员',
-    order_type           int not null comment '订单类型：1，普通订单；2，批发订单',
+    order_type           tinyint not null comment '订单类型：1，普通订单；2，批发订单',
     business_code        varchar(32) not null comment '业务线编码',
     order_money          decimal(10,2) not null comment '订单金额',
     discount_rate        decimal(3,2) not null comment '折扣比例',
@@ -46,7 +46,7 @@ create table otc_order
     pay_time             datetime comment '支付时间',
     send_time            datetime comment '发货时间',
     finish_time          datetime comment '交易完成时间',
-    order_status         tinyint not null comment '订单状态：0-已取消，10-未付款，20-已付款，40-已发货，50-交易成功，60-交易关闭',
+    order_status         tinyint not null comment '订单状态：0，已取消；10，未付款；20，已付款；40，已发货；50，交易成功；60，交易关闭',
     create_time          datetime not null comment '创建时间',
     update_time          datetime not null comment '修改时间',
     primary key (order_seq)
@@ -171,7 +171,7 @@ drop table if exists otc_post_detail;
 /*==============================================================*/
 create table otc_post_detail
 (
-    post_seq             char(10) not null comment '运转序列',
+    post_seq             bigint not null auto_increment comment '运转序列',
     contract_no          varchar(32) not null comment '履约单号',
     order_no             varchar(32) not null comment '订单号',
     child_order_no       varchar(32) not null comment '子订单号',

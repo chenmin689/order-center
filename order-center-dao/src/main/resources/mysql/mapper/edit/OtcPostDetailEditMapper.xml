@@ -60,7 +60,7 @@
 		     	create_time = #{createTime,jdbcType=TIMESTAMP},
 		     </if>
 		</set>
-		where post_seq=#{postSeq,jdbcType=CHAR}
+		where post_seq=#{postSeq,jdbcType=INTEGER}
 	</update>
 	
 	<update id="editRecord" parameterType="com.cm.architecture.jdbc.entity.EditValueAndWhereEntity">
@@ -83,7 +83,7 @@
 
 	<delete id="remove" parameterType="com.cm.order.center.dao.po.OtcPostDetailPo">
 		delete from otc_post_detail where 
-	    post_seq = #{postSeq,jdbcType=CHAR}
+	    post_seq = #{postSeq,jdbcType=INTEGER}
 	</delete>
 	
 </mapper>

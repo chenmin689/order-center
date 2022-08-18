@@ -3,7 +3,7 @@
 * @Package com.cm.order.center.dao.type
 * @Description: 物流运转明细表--类型实体类
 * @author chenmin
-* @date Thu Aug 18 09:20:39 CST 2022
+* @date Thu Aug 18 09:58:57 CST 2022
 * @version V1.0
 */
 
@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @ClassName: OtcPostDetailTypes
  * @Description: 物流运转明细表--类型实体类
  * @author chenmin
- * @date Thu Aug 18 09:20:39 CST 2022
+ * @date Thu Aug 18 09:58:57 CST 2022
  */
 public class OtcPostDetailTypes{
 

@@ -3,7 +3,7 @@
 * @Package com.cm.order.center.dao.po
 * @Description: 会员订单管理--实体类
 * @author chenmin
-* @date Thu Aug 18 09:10:35 CST 2022
+* @date Thu Aug 18 10:31:54 CST 2022
 * @version V1.0
 */
 
@@ -20,7 +20,7 @@ import lombok.Data;
  * @ClassName: OtcOrderPo
  * @Description: 会员订单管理--实体类
  * @author chenmin
- * @date Thu Aug 18 09:10:35 CST 2022
+ * @date Thu Aug 18 10:31:54 CST 2022
  */
 @Data 
 @TableNames(tableName="otc_order",serMapperName="otcOrderSerMapper",editMapperName="otcOrderEditMapper")
@@ -92,7 +92,7 @@ public class OtcOrderPo extends AbstractPojo {
 	@TableColumnName(columnName="finish_time",jdbcType="TIMESTAMP")
 	private Date finishTime;
 
-	/**订单状态：0-已取消，10-未付款，20-已付款，40-已发货，50-交易成功，60-交易关闭:order_status*/
+	/**订单状态：0，已取消；10，未付款；20，已付款；40，已发货；50，交易成功；60，交易关闭:order_status*/
 	@TableColumnName(columnName="order_status",jdbcType="INTEGER")
 	private Integer orderStatus;
 

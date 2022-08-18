@@ -3,7 +3,7 @@
 * @Package com.cm.order.center.dao.po
 * @Description: 物流运转明细表--实体类
 * @author chenmin
-* @date Thu Aug 18 09:20:39 CST 2022
+* @date Thu Aug 18 09:58:57 CST 2022
 * @version V1.0
 */
 
@@ -19,7 +19,7 @@ import lombok.Data;
  * @ClassName: OtcPostDetailPo
  * @Description: 物流运转明细表--实体类
  * @author chenmin
- * @date Thu Aug 18 09:20:39 CST 2022
+ * @date Thu Aug 18 09:58:57 CST 2022
  */
 @Data 
 @TableNames(tableName="otc_post_detail",serMapperName="otcPostDetailSerMapper",editMapperName="otcPostDetailEditMapper")
@@ -28,8 +28,8 @@ public class OtcPostDetailPo extends AbstractPojo {
 	private static final long serialVersionUID = 1L;
 
 	/**运转序列:post_seq*/
-	@TableColumnName(columnName="post_seq",jdbcType="CHAR")
-	private String postSeq;
+	@TableColumnName(columnName="post_seq",jdbcType="INTEGER")
+	private Integer postSeq;
 
 	/**履约单号:contract_no*/
 	@TableColumnName(columnName="contract_no",jdbcType="VARCHAR")

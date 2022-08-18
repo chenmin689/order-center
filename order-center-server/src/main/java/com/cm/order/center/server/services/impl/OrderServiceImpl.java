@@ -44,6 +44,9 @@ public class OrderServiceImpl extends AbstractServiceImpl implements OrderServic
 			if(requestBean.isNotNull("businessCode")){
 				entity.setWhere("businessCode",requestBean.getStringValue("businessCode"));
 			}
+			if(requestBean.isNotNull("orderStatus")){
+				entity.setWhere("orderStatus",requestBean.getIntegerValue("orderStatus"));
+			}
 			entity = this.queryPageVoList(entity, otcOrderSerMapper);
 			return new ClientResponesBean<ResultFrontendVo>(entity.getResultFrontendVo());
 		}catch (Exception e) {

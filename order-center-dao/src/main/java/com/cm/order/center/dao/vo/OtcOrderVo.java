@@ -3,7 +3,7 @@
 * @Package com.cm.order.center.dao.vo
 * @Description: 会员订单管理--实体类
 * @author chenmin
-* @date Thu Aug 18 09:10:35 CST 2022
+* @date Thu Aug 18 10:31:54 CST 2022
 * @version V1.0
 */
 
@@ -21,7 +21,7 @@ import lombok.Data;
  * @ClassName: OtcOrderVo
  * @Description: 会员订单管理--实体类
  * @author chenmin
- * @date Thu Aug 18 09:10:35 CST 2022
+ * @date Thu Aug 18 10:31:54 CST 2022
  */
 @Data 
 @TableNames(tableName="otc_order")
@@ -41,6 +41,10 @@ public class OtcOrderVo extends AbstractPojo {
 	/**订单类型：1，普通订单；2，批发订单:order_type*/
 	private Integer orderType;
 
+	private String orderTypeText; 
+	public String getOrderTypeText(){ 
+		return OtcOrderTypes.orderTypeTypes.get(orderType);
+	}
 	/**业务线编码:business_code*/
 	private String businessCode;
 
@@ -84,7 +88,7 @@ public class OtcOrderVo extends AbstractPojo {
 	@JsonFormat(pattern ="yyyy-MM-dd HH:mm:ss")
 	private Date finishTime;
 
-	/**订单状态：0-已取消，10-未付款，20-已付款，40-已发货，50-交易成功，60-交易关闭:order_status*/
+	/**订单状态：0，已取消；10，未付款；20，已付款；40，已发货；50，交易成功；60，交易关闭:order_status*/
 	private Integer orderStatus;
 
 	private String orderStatusText; 
