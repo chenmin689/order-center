@@ -21,7 +21,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class OtcUserCartTypes{
 
 	public static final Map<Integer,String> selltypeTypes = new ConcurrentHashMap<Integer,String>(){{
+		put(1,"普通销售");
+		put(2,"活动销售");
+		put(3,"批发销售");
 	}};
+
 	public static final Map<Integer,String> cartStatusTypes = new ConcurrentHashMap<Integer,String>(){{
+		put(1,"初始化");
+		put(2,"已下单");
 	}};
 }
