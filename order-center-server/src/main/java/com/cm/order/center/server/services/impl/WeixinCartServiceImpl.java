@@ -1,12 +1,7 @@
 package com.cm.order.center.server.services.impl;
 
-import com.cm.architecture.commons.beans.ClientResponesBean;
 import com.cm.architecture.commons.weixin.WeixinRequestBean;
 import com.cm.architecture.commons.weixin.WeixinResponesBean;
-import com.cm.architecture.jdbc.entity.QueryListEntity;
-import com.cm.architecture.jdbc.entity.ResultFrontendVo;
-import com.cm.architecture.jdbc.utils.ModelErrorEnum;
-import com.cm.order.center.dao.po.OtcPostDetailPo;
 import com.cm.order.center.server.services.WeixinCartService;
 import com.cm.order.center.server.vo.CartGooodsVo;
 import com.cm.order.center.server.vo.PayMoneyCalculateVo;
@@ -23,13 +18,14 @@ public class WeixinCartServiceImpl implements WeixinCartService {
     @Override
     public WeixinResponesBean<String> toCartAddGoods(WeixinRequestBean weixinRequestBean) {
         try {
-            //难活动是否有效
+            //验证活动是否有效
 
             //验证库存
 
-            //创建订单
+            //验证会员购物中是否有此商品
 
-            //修改购物车商品状态
+            //向会员购物车中增加商品
+
         }catch (Exception e) {
             log.error("向会员购物车中添加商品,异常：",e);
         }
