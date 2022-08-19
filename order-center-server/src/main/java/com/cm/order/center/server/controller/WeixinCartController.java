@@ -18,7 +18,7 @@ import java.util.List;
  * @author chenmin
  */
 @RestController
-@RequestMapping("order")
+@RequestMapping("weixin")
 public class WeixinCartController {
 
     @Resource

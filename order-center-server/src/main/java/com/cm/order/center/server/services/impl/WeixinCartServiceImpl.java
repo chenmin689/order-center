@@ -1,5 +1,7 @@
 package com.cm.order.center.server.services.impl;
 
+import com.cm.architecture.commons.logic.ILogic;
+import com.cm.architecture.commons.utils.SystemContains;
 import com.cm.architecture.commons.weixin.WeixinRequestBean;
 import com.cm.architecture.commons.weixin.WeixinResponesBean;
 import com.cm.order.center.server.services.WeixinCartService;
@@ -8,6 +10,7 @@ import com.cm.order.center.server.vo.PayMoneyCalculateVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,17 +18,47 @@ import java.util.List;
 @Slf4j
 public class WeixinCartServiceImpl implements WeixinCartService {
 
+    @Resource
+    private ILogic<WeixinRequestBean,String> checkActivityLogic;
+
+    @Resource
+    private ILogic<WeixinRequestBean,String> checkGoodsStockLogic;
+
+    @Resource
+    private ILogic<WeixinRequestBean,String> checkCartGoodsLogic;
+
+    @Resource
+    private ILogic<WeixinRequestBean,String> toCartAddGoodsLogic;
+
     @Override
     public WeixinResponesBean<String> toCartAddGoods(WeixinRequestBean weixinRequestBean) {
         try {
-            //验证活动是否有效
+            String result = checkActivityLogic.exec(weixinRequestBean);
+            if(!result.equals(SystemContains.SUCCESS)){
+                return new WeixinResponesBean<>(1,result);
+            }
 
             //验证库存
+            result = checkGoodsStockLogic.exec(weixinRequestBean);
+            if(!result.equals(SystemContains.SUCCESS)){
+                return new WeixinResponesBean<>(1,result);
+            }
 
             //验证会员购物中是否有此商品
+            result = checkCartGoodsLogic.exec(weixinRequestBean);
+            if(result.equals(SystemContains.STEP_ONE)){
+                return new WeixinResponesBean<>("商品加车成功");
+            }
+            if(!result.equals(SystemContains.SUCCESS)){
+                return new WeixinResponesBean<>(1,result);
+            }
 
             //向会员购物车中增加商品
-
+            result = toCartAddGoodsLogic.exec(weixinRequestBean);
+            if(!result.equals(SystemContains.SUCCESS)){
+                return new WeixinResponesBean<>(1,result);
+            }
+            return new WeixinResponesBean<>("商品加车成功");
         }catch (Exception e) {
             log.error("向会员购物车中添加商品,异常：",e);
         }
