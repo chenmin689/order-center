@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcUserCartSerMapper">
 	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcUserCartPo">
-		<id column="cart_seq" property="cartSeq" jdbcType="INTEGER" />
+		<id column="cart_seq" property="cartSeq" jdbcType="BIGINT" />
 		<result column="user_id" property="userId" jdbcType="INTEGER" />
 		<result column="business_code" property="businessCode" jdbcType="VARCHAR" />
 		<result column="goods_code" property="goodsCode" jdbcType="INTEGER" />
@@ -19,7 +19,7 @@
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcUserCartVo">
-		<id column="cart_seq" property="cartSeq" jdbcType="INTEGER" />
+		<id column="cart_seq" property="cartSeq" jdbcType="BIGINT" />
 		<result column="user_id" property="userId" jdbcType="INTEGER" />
 		<result column="business_code" property="businessCode" jdbcType="VARCHAR" />
 		<result column="goods_code" property="goodsCode" jdbcType="INTEGER" />
@@ -97,7 +97,7 @@
 		select 
 		 cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sellType,activity_code,activity_price,cart_status,create_time,update_time 
 		from otc_user_cart 
-		where cart_seq = #{cartSeq,jdbcType=INTEGER}
+		where cart_seq = #{cartSeq,jdbcType=BIGINT}
 	</select>
 	
 	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcUserCartPo">

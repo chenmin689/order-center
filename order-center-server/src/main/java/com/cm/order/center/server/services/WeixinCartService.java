@@ -2,10 +2,8 @@ package com.cm.order.center.server.services;
 
 import com.cm.architecture.commons.weixin.WeixinRequestBean;
 import com.cm.architecture.commons.weixin.WeixinResponesBean;
-import com.cm.order.center.server.vo.CartGooodsVo;
+import com.cm.order.center.server.vo.CartGoodsTypeVo;
 import com.cm.order.center.server.vo.PayMoneyCalculateVo;
-
-import java.util.List;
 
 /**
  * 小程序端购物车接口
@@ -26,7 +24,7 @@ public interface WeixinCartService{
      * @param weixinRequestBean
      * @return WeixinResponesBean<List<CartGooodsVo>>
      */
-    public WeixinResponesBean<List<CartGooodsVo>> queryCartGoods(WeixinRequestBean weixinRequestBean);
+    public WeixinResponesBean<CartGoodsTypeVo> queryCartGoods(WeixinRequestBean weixinRequestBean);
 
     /**
      * 修改会员购物车中商品的购买数量

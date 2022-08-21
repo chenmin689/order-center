@@ -30,7 +30,7 @@ public class OtcUserCartVo extends AbstractPojo {
 	private static final long serialVersionUID = 1L;
 
 	/**购物序列:cart_seq*/
-	private Integer cartSeq;
+	private Long cartSeq;
 
 	/**会员ID:user_id*/
 	private Integer userId;

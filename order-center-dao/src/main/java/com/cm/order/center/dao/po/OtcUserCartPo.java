@@ -29,8 +29,8 @@ public class OtcUserCartPo extends AbstractPojo {
 	private static final long serialVersionUID = 1L;
 
 	/**购物序列:cart_seq*/
-	@TableColumnName(columnName="cart_seq",jdbcType="INTEGER")
-	private Integer cartSeq;
+	@TableColumnName(columnName="cart_seq",jdbcType="BIGINT")
+	private Long cartSeq;
 
 	/**会员ID:user_id*/
 	@TableColumnName(columnName="user_id",jdbcType="INTEGER")

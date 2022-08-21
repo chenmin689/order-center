@@ -95,7 +95,7 @@
 		     	update_time = #{updateTime,jdbcType=TIMESTAMP},
 		     </if>
 		</set>
-		where cart_seq=#{cartSeq,jdbcType=INTEGER}
+		where cart_seq=#{cartSeq,jdbcType=BIGINT}
 	</update>
 	
 	<update id="editRecord" parameterType="com.cm.architecture.jdbc.entity.EditValueAndWhereEntity">
@@ -118,7 +118,16 @@
 
 	<delete id="remove" parameterType="com.cm.order.center.dao.po.OtcUserCartPo">
 		delete from otc_user_cart where 
-	    cart_seq = #{cartSeq,jdbcType=INTEGER}
+	    cart_seq = #{cartSeq,jdbcType=BIGINT}
+	</delete>
+
+	<delete id="delGoods">
+		delete from otc_user_cart where
+		user_id = #{userId,jdbcType=INTEGER}
+		and cart_seq in
+		<foreach collection="seqList" open="(" close=")" separator=",">
+			#{cartSeq,jdbcType=BIGINT}
+		</foreach>
 	</delete>
 	
 </mapper>

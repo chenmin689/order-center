@@ -18,6 +18,6 @@ import com.cm.order.center.dao.po.OtcUserCartPo;
 * @author chenmin
 * @date Thu Aug 18 09:10:59 CST 2022
  */
-public interface OtcUserCartSerMapper extends PersistenceSerMapper<OtcUserCartPo,OtcUserCartVo,Integer>{
+public interface OtcUserCartSerMapper extends PersistenceSerMapper<OtcUserCartPo,OtcUserCartVo,Long>{
 
 }

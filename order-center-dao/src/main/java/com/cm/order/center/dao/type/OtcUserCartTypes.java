@@ -28,6 +28,9 @@ public class OtcUserCartTypes{
 
 	public static final Map<Integer,String> cartStatusTypes = new ConcurrentHashMap<Integer,String>(){{
 		put(1,"初始化");
-		put(2,"已下单");
+		put(2,"活动结束");
+		put(3,"批发终止");
+		put(4,"库存不足");
+		put(5,"已下单");
 	}};
 }

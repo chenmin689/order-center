@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class CartGooodsVo implements Serializable {
 
     /**购物序列*/
-    private Integer cartSeq;
+    private Long cartSeq;
 
     /**商品编码*/
     private Integer goodsCode;
@@ -27,7 +27,7 @@ public class CartGooodsVo implements Serializable {
     private Integer buyCounts;
 
     /**加车日期*/
-    private Integer cartDate;
+    private String cartDate;
 
     /**附加参数*/
     private String additional;
@@ -40,6 +40,9 @@ public class CartGooodsVo implements Serializable {
 
     /**活动价格*/
     private BigDecimal activityPrice;
+
+    /**起批数量*/
+    private Integer batchCount = 1;
 
     /**批发价格*/
     private BigDecimal batchPrice;

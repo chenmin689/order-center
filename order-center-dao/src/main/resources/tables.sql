@@ -16,7 +16,7 @@ create table otc_user_cart
     sellType             tinyint not null comment '销售类型：1，普通销售；2，活动销售；3，批发销售',
     activity_code        varchar(32) comment '活动编码',
     activity_price       decimal(10,2) not null comment '活动价格',
-    cart_status          tinyint not null comment '加车状态：1，初始化； 2，活动结束；3，批发终止；4，已下单',
+    cart_status          tinyint not null comment '加车状态：1，初始化； 2，活动结束；3，批发终止；4，库存不足；5，已下单',
     create_time          datetime not null comment '添加时间',
     update_time          datetime not null comment '修改时间',
     primary key (cart_seq)

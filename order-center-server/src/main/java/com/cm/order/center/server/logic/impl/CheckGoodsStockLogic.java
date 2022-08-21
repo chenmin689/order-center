@@ -26,7 +26,7 @@ public class CheckGoodsStockLogic implements ILogic<WeixinRequestBean,String> {
         if(buyType == 2){
             String stockSell = stringRedisTemplate.opsForValue().get(String.format(RedisStaticKeys.STOCK_SELL,weixinRequestBean.getBusinessCode(),goodsCode));
             if(StringUtils.isBlank(stockSell) || Integer.valueOf(stockSell) < 1){
-                return "商品加车失败，此商品没有活动库存";
+                return "商品加车失败，此商品没有足够的活动库存";
             }
             return SystemContains.SUCCESS;
         }
@@ -45,7 +45,7 @@ public class CheckGoodsStockLogic implements ILogic<WeixinRequestBean,String> {
         weixinRequestBean.getParameter().put("goodsImg",jsonObject.getString("goodsImg"));
         String stockValid = stringRedisTemplate.opsForValue().get(String.format(RedisStaticKeys.STOCK_VALID,weixinRequestBean.getBusinessCode(),goodsCode));
         if(StringUtils.isBlank(stockValid) || Integer.valueOf(stockValid) < buyCount){
-            return "商品加车失败，此商品没有可售库存";
+            return "商品加车失败，此商品没有足够的可售库存";
         }
         return SystemContains.SUCCESS;
     }

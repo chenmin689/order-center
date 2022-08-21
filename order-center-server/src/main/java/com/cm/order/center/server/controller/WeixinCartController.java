@@ -3,6 +3,7 @@ package com.cm.order.center.server.controller;
 import com.cm.architecture.commons.weixin.WeixinRequestBean;
 import com.cm.architecture.commons.weixin.WeixinResponesBean;
 import com.cm.order.center.server.services.WeixinCartService;
+import com.cm.order.center.server.vo.CartGoodsTypeVo;
 import com.cm.order.center.server.vo.CartGooodsVo;
 import com.cm.order.center.server.vo.PayMoneyCalculateVo;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +42,7 @@ public class WeixinCartController {
      * @return WeixinResponesBean<List<CartGooodsVo>>
      */
     @RequestMapping(path="/cart/queryCartGoods",method= RequestMethod.POST)
-    public WeixinResponesBean<List<CartGooodsVo>> queryCartGoods(@RequestBody WeixinRequestBean weixinRequestBean) {
+    public WeixinResponesBean<CartGoodsTypeVo> queryCartGoods(@RequestBody WeixinRequestBean weixinRequestBean) {
 
         return weixinCartService.queryCartGoods(weixinRequestBean);
     }
