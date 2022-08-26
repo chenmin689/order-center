@@ -12,6 +12,10 @@ import com.cm.architecture.jdbc.mapper.PersistenceSerMapper;
 import com.cm.architecture.jdbc.entity.EditValueAndWhereEntity;
 import com.cm.order.center.dao.vo.OtcUserCartVo;
 import com.cm.order.center.dao.po.OtcUserCartPo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 /**
 * @ClassName: OtcUserCartSerMapper
 * @Description: 会员购物车表--查询接口类
@@ -20,4 +24,5 @@ import com.cm.order.center.dao.po.OtcUserCartPo;
  */
 public interface OtcUserCartSerMapper extends PersistenceSerMapper<OtcUserCartPo,OtcUserCartVo,Long>{
 
+    public List<OtcUserCartPo> byUserCartSeqQuery(@Param("userId") Integer userId,@Param("cartSeqList") List<Long> cartSeqList);
 }

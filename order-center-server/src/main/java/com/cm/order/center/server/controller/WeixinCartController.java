@@ -4,15 +4,12 @@ import com.cm.architecture.commons.weixin.WeixinRequestBean;
 import com.cm.architecture.commons.weixin.WeixinResponesBean;
 import com.cm.order.center.server.services.WeixinCartService;
 import com.cm.order.center.server.vo.CartGoodsTypeVo;
-import com.cm.order.center.server.vo.CartGooodsVo;
-import com.cm.order.center.server.vo.PayMoneyCalculateVo;
+import com.cm.order.center.server.vo.PayMoneyAmountVo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 小程序端购物车接口
@@ -75,7 +72,7 @@ public class WeixinCartController {
      * @return WeixinResponesBean<PayMoneyCalculateVo>
      */
     @RequestMapping(path="/cart/calculate",method= RequestMethod.POST)
-    public WeixinResponesBean<PayMoneyCalculateVo> calculate(@RequestBody WeixinRequestBean weixinRequestBean) {
+    public WeixinResponesBean<PayMoneyAmountVo> calculate(@RequestBody WeixinRequestBean weixinRequestBean) {
 
         return weixinCartService.calculate(weixinRequestBean);
     }

@@ -79,7 +79,7 @@ public class UserCartServiceImpl extends AbstractServiceImpl implements UserCart
 	public ClientResponesBean<Integer> edit(ClientRequestBean requestBean) {
 		try {
 			OtcUserCartPo po = new OtcUserCartPo();
-			po.setCartSeq(requestBean.getIntegerValue("cartSeq"));
+			po.setCartSeq(requestBean.getLongValue("cartSeq"));
 			
 			po.setUserId(requestBean.getIntegerValue("userId")); 
 			po.setBusinessCode(requestBean.getStringValue("businessCode")); 
@@ -106,7 +106,7 @@ public class UserCartServiceImpl extends AbstractServiceImpl implements UserCart
 
 	public ClientResponesBean<OtcUserCartPo> query(ClientRequestBean requestBean) {
 		try {
-			OtcUserCartPo po = otcUserCartSerMapper.byPrimaryKeyPo(requestBean.getIntegerValue("cartSeq"));
+			OtcUserCartPo po = otcUserCartSerMapper.byPrimaryKeyPo(requestBean.getLongValue("cartSeq"));
 			return new ClientResponesBean<OtcUserCartPo>(po);
 		}catch (Exception e) {
 			log.error("会员购物车表 ,单条数据查询异常：",e);
@@ -116,7 +116,7 @@ public class UserCartServiceImpl extends AbstractServiceImpl implements UserCart
 
 	public ClientResponesBean<OtcUserCartVo> queryVo(ClientRequestBean requestBean) {
 		try {
-			OtcUserCartVo vo = otcUserCartSerMapper.byPrimaryKeyVo(requestBean.getIntegerValue("cartSeq"));
+			OtcUserCartVo vo = otcUserCartSerMapper.byPrimaryKeyVo(requestBean.getLongValue("cartSeq"));
 			return new ClientResponesBean<OtcUserCartVo>(vo);
 		}catch (Exception e) {
 			log.error("会员购物车表 ,单条数据查询异常：",e);
@@ -127,7 +127,7 @@ public class UserCartServiceImpl extends AbstractServiceImpl implements UserCart
 	public ClientResponesBean<Integer> del(ClientRequestBean requestBean) {
 		try {
 			OtcUserCartPo po = new OtcUserCartPo();
-			po.setCartSeq(requestBean.getIntegerValue("cartSeq"));
+			po.setCartSeq(requestBean.getLongValue("cartSeq"));
 			int count = otcUserCartEditMapper.remove(po);
 			return new ClientResponesBean<Integer>(count);
 		}catch (Exception e) {
@@ -138,9 +138,9 @@ public class UserCartServiceImpl extends AbstractServiceImpl implements UserCart
 	public ClientResponesBean<Integer> batchDel(ClientRequestBean requestBean) {
 		try {
 			OtcUserCartPo po = new OtcUserCartPo();
-			List<Integer> list = requestBean.getListInteger("batchId");
+			List<Long> list = requestBean.getListLong("batchId");
 			int count = 0;
-			for(Integer id : list){
+			for(Long id : list){
 			po.setCartSeq(id);
 			count += otcUserCartEditMapper.remove(po);
 			}

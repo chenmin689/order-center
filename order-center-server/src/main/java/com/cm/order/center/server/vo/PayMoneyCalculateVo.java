@@ -1,11 +1,14 @@
 package com.cm.order.center.server.vo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * 购物车想要购物商品支付总金额计算
  */
+@Data
 public class PayMoneyCalculateVo implements Serializable {
 
     /**销售类型：1，普通销售；2，活动销售；3，批发销售*/
