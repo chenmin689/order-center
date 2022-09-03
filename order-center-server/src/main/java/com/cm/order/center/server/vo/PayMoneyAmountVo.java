@@ -17,6 +17,8 @@ public class PayMoneyAmountVo implements Serializable {
 
     private BigDecimal discountMoney;
 
+    private BigDecimal postMoney;
+
     private PayMoneyCalculateVo commonPayMoney;
 
     private PayMoneyCalculateVo sellPayMoney;
