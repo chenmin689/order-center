@@ -35,11 +35,11 @@ public class OrderDetailServiceImpl extends AbstractServiceImpl implements Order
 			QueryListEntity entity = new QueryListEntity(OtcOrderDetailPo.class);
 			entity.setPage(requestBean.getIntegerValue("page"));
 			entity.setRows(requestBean.getIntegerValue("rows"));
-			if(requestBean.isNotNull("userId")){
-				entity.setWhere("userId",requestBean.getIntegerValue("userId"));
-			}
 			if(requestBean.isNotNull("orderNo")){
 				entity.setWhere("orderNo",requestBean.getStringValue("orderNo"));
+			}
+			if(requestBean.isNotNull("childOrderNo")){
+				entity.setWhere("childOrderNo",requestBean.getStringValue("childOrderNo"));
 			}
 			entity = this.queryPageVoList(entity, otcOrderDetailSerMapper);
 			return new ClientResponesBean<ResultFrontendVo>(entity.getResultFrontendVo());
@@ -56,6 +56,7 @@ public class OrderDetailServiceImpl extends AbstractServiceImpl implements Order
 			po.setUserId(requestBean.getIntegerValue("userId")); 
 			po.setOrderNo(requestBean.getStringValue("orderNo")); 
 			po.setChildOrderNo(requestBean.getStringValue("childOrderNo")); 
+			po.setSellType(requestBean.getIntegerValue("sellType")); 
 			po.setGoodsName(requestBean.getStringValue("goodsName")); 
 			po.setGoodsCode(requestBean.getIntegerValue("goodsCode")); 
 			po.setGoodsImg(requestBean.getStringValue("goodsImg")); 
@@ -84,6 +85,7 @@ public class OrderDetailServiceImpl extends AbstractServiceImpl implements Order
 			po.setUserId(requestBean.getIntegerValue("userId")); 
 			po.setOrderNo(requestBean.getStringValue("orderNo")); 
 			po.setChildOrderNo(requestBean.getStringValue("childOrderNo")); 
+			po.setSellType(requestBean.getIntegerValue("sellType")); 
 			po.setGoodsName(requestBean.getStringValue("goodsName")); 
 			po.setGoodsCode(requestBean.getIntegerValue("goodsCode")); 
 			po.setGoodsImg(requestBean.getStringValue("goodsImg")); 

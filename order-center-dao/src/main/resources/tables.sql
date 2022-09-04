@@ -13,7 +13,7 @@ create table otc_user_cart
     buy_counts           int not null comment '购买数量',
     cart_date            int not null comment '加车日期',
     additional           varchar(64) comment '附加参数',
-    sellType             tinyint not null comment '销售类型：1，普通销售；2，活动销售；3，批发销售',
+    sell_type             tinyint not null comment '销售类型：1，普通销售；2，活动销售；3，批发销售',
     activity_code        varchar(32) comment '活动编码',
     activity_price       decimal(10,2) not null comment '活动价格',
     cart_status          tinyint not null comment '加车状态：1，初始化； 2，活动结束；3，批发终止；4，库存不足；5，已下单',
@@ -71,6 +71,7 @@ create table otc_order_detail
     user_id              int not null comment '会员ID',
     order_no             varchar(32) not null comment '订单号',
     child_order_no       varchar(32) not null comment '子订单号',
+    sell_type            tinyint not null comment '销售类型：1，普通销售；2，活动销售；3，批发销售',
     goods_name           varchar(64) not null comment '商品名称',
     goods_code           int not null comment '商品编码',
     goods_img            varchar(128) not null comment '商品图片',
@@ -86,6 +87,27 @@ create table otc_order_detail
 );
 alter table otc_order_detail comment '订单明细表';
 
+drop table if exists otc_order_receive_address;
+/*==============================================================*/
+/* Table: otc_order_receive_address                             */
+/*==============================================================*/
+create table otc_order_receive_address
+(
+    addr_seq             int not null comment '地址序号',
+    order_no             varchar(32) comment '订单号',
+    receiver             varchar(32) not null comment '收货人',
+    telephone            varchar(16) not null comment '联系电话',
+    province_code        int not null comment '省份编码',
+    city_code            int not null comment '城市编码',
+    county_code          int not null comment '县区编码',
+    town_code            int not null comment '镇乡编码',
+    street_code          varchar(16) comment '街道编码',
+    detail_addr          varchar(128) not null comment '详细地址',
+    create_time          datetime not null comment '添加时间',
+    update_time          datetime not null comment '修改时间',
+    primary key (addr_seq)
+);
+alter table otc_order_receive_address comment '订单收货地址表';
 
 drop table if exists otc_order_payment;
 /*==============================================================*/

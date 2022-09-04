@@ -6,6 +6,7 @@
 		<result column="user_id" property="userId" jdbcType="INTEGER" />
 		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
 		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
+		<result column="sell_type" property="sellType" jdbcType="INTEGER" />
 		<result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
 		<result column="goods_code" property="goodsCode" jdbcType="INTEGER" />
 		<result column="goods_img" property="goodsImg" jdbcType="VARCHAR" />
@@ -23,6 +24,7 @@
 		<result column="user_id" property="userId" jdbcType="INTEGER" />
 		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
 		<result column="child_order_no" property="childOrderNo" jdbcType="VARCHAR" />
+		<result column="sell_type" property="sellType" jdbcType="INTEGER" />
 		<result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
 		<result column="goods_code" property="goodsCode" jdbcType="INTEGER" />
 		<result column="goods_img" property="goodsImg" jdbcType="VARCHAR" />
@@ -38,14 +40,14 @@
 	
 	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select 
-		 detail_seq,user_id,order_no,child_order_no,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time 
+		 detail_seq,user_id,order_no,child_order_no,sell_type,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time 
 		from otc_order_detail 
 		where detail_seq = #{detailSeq,jdbcType=INTEGER}
 	</select>
 	
 	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderDetailPo">
 		select  
-		 detail_seq,user_id,order_no,child_order_no,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time 
+		 detail_seq,user_id,order_no,child_order_no,sell_type,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time 
 		from otc_order_detail 
 		<where>
 				<if test="userId != null">
@@ -56,6 +58,9 @@
 				</if>
 				<if test="childOrderNo != null">
 					AND child_order_no = #{childOrderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="sellType != null">
+					AND sell_type = #{sellType,jdbcType=INTEGER}
 				</if>
 				<if test="goodsName != null">
 					AND goods_name = #{goodsName,jdbcType=VARCHAR}
@@ -95,13 +100,13 @@
 	
 	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Long">
 		select 
-		 detail_seq,user_id,order_no,child_order_no,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time 
+		 detail_seq,user_id,order_no,child_order_no,sell_type,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time 
 		from otc_order_detail 
 		where detail_seq = #{detailSeq,jdbcType=INTEGER}
 	</select>
 	
 	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderDetailPo">
-		select detail_seq,user_id,order_no,child_order_no,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time from otc_order_detail
+		select detail_seq,user_id,order_no,child_order_no,sell_type,goods_name,goods_code,goods_img,goods_price,batch_price,goods_count,goods_money,discount_rate,discount_moeny,create_time,update_time from otc_order_detail
 		<where>
 				<if test="userId != null">
 					AND user_id = #{userId,jdbcType=INTEGER}
@@ -111,6 +116,9 @@
 				</if>
 				<if test="childOrderNo != null">
 					AND child_order_no = #{childOrderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="sellType != null">
+					AND sell_type = #{sellType,jdbcType=INTEGER}
 				</if>
 				<if test="goodsName != null">
 					AND goods_name = #{goodsName,jdbcType=VARCHAR}

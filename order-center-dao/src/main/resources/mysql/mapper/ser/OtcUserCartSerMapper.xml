@@ -11,7 +11,7 @@
 		<result column="buy_counts" property="buyCounts" jdbcType="INTEGER" />
 		<result column="cart_date" property="cartDate" jdbcType="INTEGER" />
 		<result column="additional" property="additional" jdbcType="VARCHAR" />
-		<result column="sellType" property="selltype" jdbcType="INTEGER" />
+		<result column="sell_type" property="selltype" jdbcType="INTEGER" />
 		<result column="activity_code" property="activityCode" jdbcType="VARCHAR" />
 		<result column="activity_price" property="activityPrice" jdbcType="DECIMAL" />
 		<result column="cart_status" property="cartStatus" jdbcType="INTEGER" />
@@ -28,7 +28,7 @@
 		<result column="buy_counts" property="buyCounts" jdbcType="INTEGER" />
 		<result column="cart_date" property="cartDate" jdbcType="INTEGER" />
 		<result column="additional" property="additional" jdbcType="VARCHAR" />
-		<result column="sellType" property="selltype" jdbcType="INTEGER" />
+		<result column="sell_type" property="selltype" jdbcType="INTEGER" />
 		<result column="activity_code" property="activityCode" jdbcType="VARCHAR" />
 		<result column="activity_price" property="activityPrice" jdbcType="DECIMAL" />
 		<result column="cart_status" property="cartStatus" jdbcType="INTEGER" />
@@ -38,14 +38,14 @@
 	
 	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select 
-		 cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sellType,activity_code,activity_price,cart_status,create_time,update_time 
-		from otc_user_cart 
+		 cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sell_type,activity_code,activity_price,cart_status,create_time,update_time
+		from otc_user_cart
 		where cart_seq = #{cartSeq,jdbcType=INTEGER}
 	</select>
 	
 	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcUserCartPo">
 		select  
-		 cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sellType,activity_code,activity_price,cart_status,create_time,update_time 
+		 cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sell_type,activity_code,activity_price,cart_status,create_time,update_time
 		from otc_user_cart 
 		<where>
 				<if test="userId != null">
@@ -73,7 +73,7 @@
 					AND additional = #{additional,jdbcType=VARCHAR}
 				</if>
 				<if test="selltype != null">
-					AND sellType = #{selltype,jdbcType=INTEGER}
+					AND sell_type = #{selltype,jdbcType=INTEGER}
 				</if>
 				<if test="activityCode != null">
 					AND activity_code = #{activityCode,jdbcType=VARCHAR}
@@ -95,13 +95,13 @@
 	
 	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Long">
 		select 
-		 cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sellType,activity_code,activity_price,cart_status,create_time,update_time 
+		 cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sell_type,activity_code,activity_price,cart_status,create_time,update_time
 		from otc_user_cart 
 		where cart_seq = #{cartSeq,jdbcType=BIGINT}
 	</select>
 	
 	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcUserCartPo">
-		select cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sellType,activity_code,activity_price,cart_status,create_time,update_time from otc_user_cart
+		select cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sell_type,activity_code,activity_price,cart_status,create_time,update_time from otc_user_cart
 		<where>
 				<if test="userId != null">
 					AND user_id = #{userId,jdbcType=INTEGER}
@@ -128,7 +128,7 @@
 					AND additional = #{additional,jdbcType=VARCHAR}
 				</if>
 				<if test="selltype != null">
-					AND sellType = #{selltype,jdbcType=INTEGER}
+					AND sell_type = #{selltype,jdbcType=INTEGER}
 				</if>
 				<if test="activityCode != null">
 					AND activity_code = #{activityCode,jdbcType=VARCHAR}
@@ -193,7 +193,7 @@
 	</select>
 
 	<select id="byUserCartSeqQuery" resultMap="BaseResultMap">
-		select cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sellType,activity_code,activity_price,cart_status from otc_user_cart
+		select cart_seq,user_id,business_code,goods_code,goods_name,goods_img,buy_counts,cart_date,additional,sell_type,activity_code,activity_price,cart_status from otc_user_cart
 		where user_id = #{userId,jdbcType=INTEGER} and cart_seq in
 		<foreach collection="cartSeqList" item="item" separator="," open="(" close=")">
 			#{cartSeq,jdbcType=BIGINT}

@@ -3,7 +3,7 @@
 * @Package com.cm.order.center.dao.po
 * @Description: 订单明细表--实体类
 * @author chenmin
-* @date Thu Aug 18 09:10:09 CST 2022
+* @date Sun Sep 04 16:56:22 CST 2022
 * @version V1.0
 */
 
@@ -20,7 +20,7 @@ import lombok.Data;
  * @ClassName: OtcOrderDetailPo
  * @Description: 订单明细表--实体类
  * @author chenmin
- * @date Thu Aug 18 09:10:09 CST 2022
+ * @date Sun Sep 04 16:56:22 CST 2022
  */
 @Data 
 @TableNames(tableName="otc_order_detail",serMapperName="otcOrderDetailSerMapper",editMapperName="otcOrderDetailEditMapper")
@@ -43,6 +43,10 @@ public class OtcOrderDetailPo extends AbstractPojo {
 	/**子订单号:child_order_no*/
 	@TableColumnName(columnName="child_order_no",jdbcType="VARCHAR")
 	private String childOrderNo;
+
+	/**销售类型：1，普通销售；2，活动销售；3，批发销售:sell_type*/
+	@TableColumnName(columnName="sell_type",jdbcType="INTEGER")
+	private Integer sellType;
 
 	/**商品名称:goods_name*/
 	@TableColumnName(columnName="goods_name",jdbcType="VARCHAR")

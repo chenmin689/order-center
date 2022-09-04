@@ -3,7 +3,7 @@
 * @Package com.cm.order.center.dao.vo
 * @Description: 订单明细表--实体类
 * @author chenmin
-* @date Thu Aug 18 09:10:09 CST 2022
+* @date Sun Sep 04 16:56:22 CST 2022
 * @version V1.0
 */
 
@@ -12,6 +12,7 @@ package com.cm.order.center.dao.vo;
 import java.math.BigDecimal;
 import java.util.Date;
 import com.cm.architecture.jdbc.annotation.TableNames;
+import com.cm.order.center.dao.type.OtcOrderDetailTypes;
 import com.cm.architecture.jdbc.pojo.AbstractPojo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -20,7 +21,7 @@ import lombok.Data;
  * @ClassName: OtcOrderDetailVo
  * @Description: 订单明细表--实体类
  * @author chenmin
- * @date Thu Aug 18 09:10:09 CST 2022
+ * @date Sun Sep 04 16:56:22 CST 2022
  */
 @Data 
 @TableNames(tableName="otc_order_detail")
@@ -40,6 +41,13 @@ public class OtcOrderDetailVo extends AbstractPojo {
 	/**子订单号:child_order_no*/
 	private String childOrderNo;
 
+	/**销售类型：1，普通销售；2，活动销售；3，批发销售:sell_type*/
+	private Integer sellType;
+
+	private String sellTypeText; 
+	public String getSellTypeText(){ 
+		return OtcOrderDetailTypes.sellTypeTypes.get(sellType);
+	}
 	/**商品名称:goods_name*/
 	private String goodsName;
 

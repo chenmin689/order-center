@@ -3,7 +3,7 @@
 * @Package com.cm.order.center.dao.po
 * @Description: 会员订单管理--实体类
 * @author chenmin
-* @date Thu Aug 18 11:08:17 CST 2022
+* @date Sun Sep 04 16:53:47 CST 2022
 * @version V1.0
 */
 
@@ -20,7 +20,7 @@ import lombok.Data;
  * @ClassName: OtcOrderPo
  * @Description: 会员订单管理--实体类
  * @author chenmin
- * @date Thu Aug 18 11:08:17 CST 2022
+ * @date Sun Sep 04 16:53:47 CST 2022
  */
 @Data 
 @TableNames(tableName="otc_order",serMapperName="otcOrderSerMapper",editMapperName="otcOrderEditMapper")
