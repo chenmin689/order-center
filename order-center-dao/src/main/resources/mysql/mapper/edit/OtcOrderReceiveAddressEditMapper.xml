@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cm.order.center.dao.mapper.edit.OtcOrderReceiveAddressEditMapper">
+	
+	<insert id="save" parameterType="com.cm.order.center.dao.po.OtcOrderReceiveAddressPo">
+		insert into otc_order_receive_address(
+			order_no,receiver,telephone,province_code,city_code,county_code,town_code,street_code,detail_addr,create_time,update_time
+		)
+		values(
+			#{orderNo,jdbcType=VARCHAR},
+			#{receiver,jdbcType=VARCHAR},
+			#{telephone,jdbcType=VARCHAR},
+			#{provinceCode,jdbcType=INTEGER},
+			#{cityCode,jdbcType=INTEGER},
+			#{countyCode,jdbcType=INTEGER},
+			#{townCode,jdbcType=INTEGER},
+			#{streetCode,jdbcType=VARCHAR},
+			#{detailAddr,jdbcType=VARCHAR},
+			#{createTime,jdbcType=TIMESTAMP},
+			#{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<insert id="saveList" parameterType="java.util.List">
+		insert into otc_order_receive_address(
+			order_no,receiver,telephone,province_code,city_code,county_code,town_code,street_code,detail_addr,create_time,update_time
+		)
+		values
+		<foreach collection="list" item="entity" separator=",">
+		(
+			#{orderNo,jdbcType=VARCHAR},
+			#{receiver,jdbcType=VARCHAR},
+			#{telephone,jdbcType=VARCHAR},
+			#{provinceCode,jdbcType=INTEGER},
+			#{cityCode,jdbcType=INTEGER},
+			#{countyCode,jdbcType=INTEGER},
+			#{townCode,jdbcType=INTEGER},
+			#{streetCode,jdbcType=VARCHAR},
+			#{detailAddr,jdbcType=VARCHAR},
+			#{createTime,jdbcType=TIMESTAMP},
+			#{updateTime,jdbcType=TIMESTAMP}
+		)
+		</foreach>
+	</insert>
+	
+	<update id="editEntity" parameterType="com.cm.order.center.dao.po.OtcOrderReceiveAddressPo">
+		update otc_order_receive_address
+		<set>
+			 <if test="orderNo != null">
+		     	order_no = #{orderNo,jdbcType=VARCHAR},
+		     </if>
+			 <if test="receiver != null">
+		     	receiver = #{receiver,jdbcType=VARCHAR},
+		     </if>
+			 <if test="telephone != null">
+		     	telephone = #{telephone,jdbcType=VARCHAR},
+		     </if>
+			 <if test="provinceCode != null">
+		     	province_code = #{provinceCode,jdbcType=INTEGER},
+		     </if>
+			 <if test="cityCode != null">
+		     	city_code = #{cityCode,jdbcType=INTEGER},
+		     </if>
+			 <if test="countyCode != null">
+		     	county_code = #{countyCode,jdbcType=INTEGER},
+		     </if>
+			 <if test="townCode != null">
+		     	town_code = #{townCode,jdbcType=INTEGER},
+		     </if>
+			 <if test="streetCode != null">
+		     	street_code = #{streetCode,jdbcType=VARCHAR},
+		     </if>
+			 <if test="detailAddr != null">
+		     	detail_addr = #{detailAddr,jdbcType=VARCHAR},
+		     </if>
+			 <if test="createTime != null">
+		     	create_time = #{createTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="updateTime != null">
+		     	update_time = #{updateTime,jdbcType=TIMESTAMP},
+		     </if>
+		</set>
+		where addr_seq=#{addrSeq,jdbcType=INTEGER}
+	</update>
+	
+	<update id="editRecord" parameterType="com.cm.architecture.jdbc.entity.EditValueAndWhereEntity">
+		update otc_order_receive_address
+		<set>
+			<foreach collection="editValue" index="key" item="item">
+				 <if test="item != null and item.value != null">
+			     	${key} = #{item.value,jdbcType=${item.jdbcType}},
+			     </if>
+			</foreach>
+		</set>
+		<where>
+			<foreach collection="editWhere" index="key" item="item">
+				<if test="item != null and item.value != null">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+			</foreach>
+		</where>
+	</update>
+
+	<delete id="remove" parameterType="com.cm.order.center.dao.po.OtcOrderReceiveAddressPo">
+		delete from otc_order_receive_address where 
+	    addr_seq = #{addrSeq,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

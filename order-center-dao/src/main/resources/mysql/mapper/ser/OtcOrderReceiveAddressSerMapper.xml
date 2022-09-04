@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcOrderReceiveAddressSerMapper">
+	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcOrderReceiveAddressPo">
+		<id column="addr_seq" property="addrSeq" jdbcType="INTEGER" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="receiver" property="receiver" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="province_code" property="provinceCode" jdbcType="INTEGER" />
+		<result column="city_code" property="cityCode" jdbcType="INTEGER" />
+		<result column="county_code" property="countyCode" jdbcType="INTEGER" />
+		<result column="town_code" property="townCode" jdbcType="INTEGER" />
+		<result column="street_code" property="streetCode" jdbcType="VARCHAR" />
+		<result column="detail_addr" property="detailAddr" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcOrderReceiveAddressVo">
+		<id column="addr_seq" property="addrSeq" jdbcType="INTEGER" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="receiver" property="receiver" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="province_code" property="provinceCode" jdbcType="INTEGER" />
+		<result column="city_code" property="cityCode" jdbcType="INTEGER" />
+		<result column="county_code" property="countyCode" jdbcType="INTEGER" />
+		<result column="town_code" property="townCode" jdbcType="INTEGER" />
+		<result column="street_code" property="streetCode" jdbcType="VARCHAR" />
+		<result column="detail_addr" property="detailAddr" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select 
+		 addr_seq,order_no,receiver,telephone,province_code,city_code,county_code,town_code,street_code,detail_addr,create_time,update_time 
+		from otc_order_receive_address 
+		where addr_seq = #{addrSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderReceiveAddressPo">
+		select  
+		 addr_seq,order_no,receiver,telephone,province_code,city_code,county_code,town_code,street_code,detail_addr,create_time,update_time 
+		from otc_order_receive_address 
+		<where>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="receiver != null">
+					AND receiver = #{receiver,jdbcType=VARCHAR}
+				</if>
+				<if test="telephone != null">
+					AND telephone = #{telephone,jdbcType=VARCHAR}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code = #{provinceCode,jdbcType=INTEGER}
+				</if>
+				<if test="cityCode != null">
+					AND city_code = #{cityCode,jdbcType=INTEGER}
+				</if>
+				<if test="countyCode != null">
+					AND county_code = #{countyCode,jdbcType=INTEGER}
+				</if>
+				<if test="townCode != null">
+					AND town_code = #{townCode,jdbcType=INTEGER}
+				</if>
+				<if test="streetCode != null">
+					AND street_code = #{streetCode,jdbcType=VARCHAR}
+				</if>
+				<if test="detailAddr != null">
+					AND detail_addr = #{detailAddr,jdbcType=VARCHAR}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Integer">
+		select 
+		 addr_seq,order_no,receiver,telephone,province_code,city_code,county_code,town_code,street_code,detail_addr,create_time,update_time 
+		from otc_order_receive_address 
+		where addr_seq = #{addrSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcOrderReceiveAddressPo">
+		select addr_seq,order_no,receiver,telephone,province_code,city_code,county_code,town_code,street_code,detail_addr,create_time,update_time from otc_order_receive_address
+		<where>
+				<if test="orderNo != null">
+					AND order_no = #{orderNo,jdbcType=VARCHAR}
+				</if>
+				<if test="receiver != null">
+					AND receiver = #{receiver,jdbcType=VARCHAR}
+				</if>
+				<if test="telephone != null">
+					AND telephone = #{telephone,jdbcType=VARCHAR}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code = #{provinceCode,jdbcType=INTEGER}
+				</if>
+				<if test="cityCode != null">
+					AND city_code = #{cityCode,jdbcType=INTEGER}
+				</if>
+				<if test="countyCode != null">
+					AND county_code = #{countyCode,jdbcType=INTEGER}
+				</if>
+				<if test="townCode != null">
+					AND town_code = #{townCode,jdbcType=INTEGER}
+				</if>
+				<if test="streetCode != null">
+					AND street_code = #{streetCode,jdbcType=VARCHAR}
+				</if>
+				<if test="detailAddr != null">
+					AND detail_addr = #{detailAddr,jdbcType=VARCHAR}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryPageList" resultMap="BaseResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order_receive_address 
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+	
+	<select id="queryPageCounts" resultType="java.lang.Integer" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select count(addr_seq) from otc_order_receive_address
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="queryPageVoList" resultMap="BaseVoResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_order_receive_address
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+</mapper>
