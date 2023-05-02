@@ -4,10 +4,13 @@ import com.cm.architecture.commons.logic.ILogic;
 import com.cm.architecture.commons.utils.SystemContains;
 import com.cm.architecture.commons.weixin.WeixinRequestBean;
 import com.cm.architecture.commons.weixin.WeixinResponesBean;
+import com.cm.order.center.dao.mapper.ser.OtcUserCartSerMapper;
+import com.cm.order.center.dao.po.OtcUserCartPo;
 import com.cm.order.center.server.services.WeixinCartService;
 import com.cm.order.center.server.vo.CartGoodsTypeVo;
 import com.cm.order.center.server.vo.PayMoneyAmountVo;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,6 +19,9 @@ import javax.annotation.Resource;
 @Service
 @Slf4j
 public class WeixinCartServiceImpl implements WeixinCartService {
+
+    @Resource
+    private OtcUserCartSerMapper otcUserCartSerMapper;
 
     @Resource
     private ILogic<WeixinRequestBean,String> checkActivityLogic;
@@ -55,9 +61,6 @@ public class WeixinCartServiceImpl implements WeixinCartService {
 
     @Resource
     private ILogic<WeixinRequestBean,String> calcuSellGoodsLogic;
-
-    @Resource
-    private ILogic<WeixinRequestBean,String> calcuBatchGoodsLogic;
 
     @Resource
     private ILogic<WeixinRequestBean,PayMoneyAmountVo> calculateResultLogic;
@@ -132,8 +135,18 @@ public class WeixinCartServiceImpl implements WeixinCartService {
     }
 
     @Override
-    public WeixinResponesBean<String> addBuyCounts(WeixinRequestBean weixinRequestBean) {
+    public WeixinResponesBean<String> editCartGoods(WeixinRequestBean weixinRequestBean) {
         try {
+            OtcUserCartPo po = otcUserCartSerMapper.byPrimaryKeyPo(weixinRequestBean.getLongValue("cartSeq"));
+            if(po == null){
+                return new WeixinResponesBean<>(1,"没有查询到历史数据");
+            }
+            weixinRequestBean.setParameter("buyType",po.getSelltype());
+            weixinRequestBean.setParameter("goodsCode",po.getGoodsCode());
+            if(StringUtils.isNotBlank(po.getActivityCode())) {
+                weixinRequestBean.setParameter("activityCode",po.getActivityCode());
+            }
+
             //活动有效期检查
             String result = checkActivityLogic.exec(weixinRequestBean);
             if(!result.equals(SystemContains.SUCCESS)){
@@ -201,10 +214,6 @@ public class WeixinCartServiceImpl implements WeixinCartService {
 
             //计算支付金额
             result = calcuSellGoodsLogic.exec(weixinRequestBean);
-            if(!result.equals(SystemContains.SUCCESS)){
-                return new WeixinResponesBean<>(1,result);
-            }
-            result = calcuBatchGoodsLogic.exec(weixinRequestBean);
             if(!result.equals(SystemContains.SUCCESS)){
                 return new WeixinResponesBean<>(1,result);
             }

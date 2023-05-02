@@ -204,3 +204,45 @@ create table otc_post_detail
     primary key (post_seq)
 );
 alter table otc_post_detail comment '物流运转明细表';
+
+
+drop table if exists otc_city_post_cost;
+/*==============================================================*/
+/* Table: otc_city_post_cost                                    */
+/*==============================================================*/
+create table otc_city_post_cost
+(
+    cost_seq             int not null auto_increment comment '费用序号',
+    business_code        varchar(32) not null comment '业务线编码',
+    province_code        int not null comment '省份编码',
+    city_code            int not null comment '城市编码',
+    county_code          int not null comment '县区编码',
+    cost                 decimal(8,2) not null comment '费用额度',
+    config_status        tinyint not null comment '配置状态：1，有效；2，无效',
+    create_time          datetime not null comment '添加时间',
+    update_time          datetime not null comment '修改时间',
+    opt_name             int not null comment '操作人',
+    primary key (cost_seq)
+);
+alter table otc_city_post_cost comment '城市物流费用配置表';
+
+drop table if exists otc_post_company_cost;
+/*==============================================================*/
+/* Table: otc_post_company_cost                                 */
+/*==============================================================*/
+create table otc_post_company_cost
+(
+    post_seq             int not null auto_increment comment '物流序号',
+    company_code         varchar(32) not null comment '公司编码',
+    company_name         varchar(64) not null comment '公司名称',
+    query_addr           varchar(128) not null comment '查询地址',
+    add_cost             decimal(8,2) not null comment '增值费用',
+    telephone            varchar(32) not null comment '客服电话',
+    person               varchar(32) comment '收货员',
+    mobile               varchar(32) comment '联系电话',
+    create_time          datetime not null comment '添加时间',
+    update_time          datetime not null comment '修改时间',
+    opt_name             int not null comment '操作人',
+    primary key (post_seq)
+);
+alter table otc_post_company_cost comment '物流公司增值费用表';

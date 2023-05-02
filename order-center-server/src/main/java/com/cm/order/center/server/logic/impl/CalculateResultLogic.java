@@ -37,17 +37,12 @@ public class CalculateResultLogic implements ILogic<WeixinRequestBean,PayMoneyAm
             orderMoney = orderMoney.add(sell.getOrderMoney());
             discountMoney = discountMoney.add(sell.getPreferMoney());
         }
-
-        if(weixinRequestBean.getCheckKey("batchPayMoney")){
-            PayMoneyCalculateVo batch = (PayMoneyCalculateVo) weixinRequestBean.getParameter().get("batchPayMoney");
-            vo.setCommonPayMoney(batch);
-            realPayMoney = realPayMoney.add(batch.getPayMoney());
-            orderMoney = orderMoney.add(batch.getOrderMoney());
-            discountMoney = discountMoney.add(batch.getPreferMoney());
-        }
         vo.setRealPayMoney(realPayMoney);
         vo.setOrderMoney(orderMoney);
         vo.setDiscountMoney(discountMoney);
+        if(weixinRequestBean.getCheckKey("postCost")){
+            vo.setPostMoney(weixinRequestBean.getBigDecimalValue("postCost"));
+        }
         return vo;
     }
 }

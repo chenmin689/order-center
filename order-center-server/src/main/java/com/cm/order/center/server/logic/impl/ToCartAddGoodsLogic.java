@@ -39,6 +39,9 @@ public class ToCartAddGoodsLogic  implements ILogic<WeixinRequestBean,String> {
         }else{
             po.setActivityPrice(new BigDecimal(0));
         }
+        if(weixinRequestBean.isNotNull("additional")) {
+            po.setAdditional(weixinRequestBean.getStringValue("additional"));
+        }
         po.setCreateTime(new Date());
         po.setUpdateTime(po.getCreateTime());
         po.setGoodsName(weixinRequestBean.getStringValue("goodsName"));

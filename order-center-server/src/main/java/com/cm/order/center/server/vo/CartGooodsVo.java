@@ -41,12 +41,6 @@ public class CartGooodsVo implements Serializable {
     /**活动价格*/
     private BigDecimal activityPrice;
 
-    /**起批数量*/
-    private Integer batchCount = 1;
-
-    /**批发价格*/
-    private BigDecimal batchPrice;
-
     /**加车状态：1，初始化； 2，活动结束；3，批发终止；4，已下单:*/
     private Integer cartStatus;
 

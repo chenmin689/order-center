@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcCityPostCostSerMapper">
+	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcCityPostCostPo">
+		<id column="cost_seq" property="costSeq" jdbcType="INTEGER" />
+		<result column="business_code" property="businessCode" jdbcType="VARCHAR" />
+		<result column="province_code" property="provinceCode" jdbcType="INTEGER" />
+		<result column="city_code" property="cityCode" jdbcType="INTEGER" />
+		<result column="county_code" property="countyCode" jdbcType="INTEGER" />
+		<result column="cost" property="cost" jdbcType="DECIMAL" />
+		<result column="config_status" property="configStatus" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="opt_name" property="optName" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcCityPostCostVo">
+		<id column="cost_seq" property="costSeq" jdbcType="INTEGER" />
+		<result column="business_code" property="businessCode" jdbcType="VARCHAR" />
+		<result column="province_code" property="provinceCode" jdbcType="INTEGER" />
+		<result column="city_code" property="cityCode" jdbcType="INTEGER" />
+		<result column="county_code" property="countyCode" jdbcType="INTEGER" />
+		<result column="cost" property="cost" jdbcType="DECIMAL" />
+		<result column="config_status" property="configStatus" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="opt_name" property="optName" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select 
+		 cost_seq,business_code,province_code,city_code,county_code,cost,config_status,create_time,update_time,opt_name 
+		from otc_city_post_cost 
+		where cost_seq = #{costSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcCityPostCostPo">
+		select  
+		 cost_seq,business_code,province_code,city_code,county_code,cost,config_status,create_time,update_time,opt_name 
+		from otc_city_post_cost 
+		<where>
+				<if test="businessCode != null">
+					AND business_code = #{businessCode,jdbcType=VARCHAR}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code = #{provinceCode,jdbcType=INTEGER}
+				</if>
+				<if test="cityCode != null">
+					AND city_code = #{cityCode,jdbcType=INTEGER}
+				</if>
+				<if test="countyCode != null">
+					AND county_code = #{countyCode,jdbcType=INTEGER}
+				</if>
+				<if test="cost != null">
+					AND cost = #{cost,jdbcType=DECIMAL}
+				</if>
+				<if test="configStatus != null">
+					AND config_status = #{configStatus,jdbcType=INTEGER}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="optName != null">
+					AND opt_name = #{optName,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
+	
+	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Integer">
+		select 
+		 cost_seq,business_code,province_code,city_code,county_code,cost,config_status,create_time,update_time,opt_name 
+		from otc_city_post_cost 
+		where cost_seq = #{costSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcCityPostCostPo">
+		select cost_seq,business_code,province_code,city_code,county_code,cost,config_status,create_time,update_time,opt_name from otc_city_post_cost
+		<where>
+				<if test="businessCode != null">
+					AND business_code = #{businessCode,jdbcType=VARCHAR}
+				</if>
+				<if test="provinceCode != null">
+					AND province_code = #{provinceCode,jdbcType=INTEGER}
+				</if>
+				<if test="cityCode != null">
+					AND city_code = #{cityCode,jdbcType=INTEGER}
+				</if>
+				<if test="countyCode != null">
+					AND county_code = #{countyCode,jdbcType=INTEGER}
+				</if>
+				<if test="cost != null">
+					AND cost = #{cost,jdbcType=DECIMAL}
+				</if>
+				<if test="configStatus != null">
+					AND config_status = #{configStatus,jdbcType=INTEGER}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="optName != null">
+					AND opt_name = #{optName,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryPageList" resultMap="BaseResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_city_post_cost 
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+	
+	<select id="queryPageCounts" resultType="java.lang.Integer" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select count(cost_seq) from otc_city_post_cost
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="queryPageVoList" resultMap="BaseVoResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_city_post_cost
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+</mapper>

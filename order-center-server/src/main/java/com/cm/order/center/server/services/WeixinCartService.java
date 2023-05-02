@@ -31,7 +31,7 @@ public interface WeixinCartService{
      * @param weixinRequestBean
      * @return WeixinResponesBean<String>
      */
-    public WeixinResponesBean<String> addBuyCounts(WeixinRequestBean weixinRequestBean);
+    public WeixinResponesBean<String> editCartGoods(WeixinRequestBean weixinRequestBean);
 
     /**
      * 删除会员购物车中商品
@@ -41,9 +41,10 @@ public interface WeixinCartService{
     public WeixinResponesBean<Integer> delCartGoods(WeixinRequestBean weixinRequestBean);
 
     /**
-     * 会员想要购物商品需要支付的总金额计算
+     * 购物车预计算接口
      * @param weixinRequestBean
      * @return WeixinResponesBean<PayMoneyCalculateVo>
      */
     public WeixinResponesBean<PayMoneyAmountVo> calculate(WeixinRequestBean weixinRequestBean);
+
 }

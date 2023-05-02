@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cm.order.center.dao.mapper.edit.OtcPostCompanyCostEditMapper">
+	
+	<insert id="save" parameterType="com.cm.order.center.dao.po.OtcPostCompanyCostPo">
+		insert into otc_post_company_cost(
+			company_code,company_name,query_addr,add_cost,telephone,person,mobile,create_time,update_time,opt_name
+		)
+		values(
+			#{companyCode,jdbcType=VARCHAR},
+			#{companyName,jdbcType=VARCHAR},
+			#{queryAddr,jdbcType=VARCHAR},
+			#{addCost,jdbcType=DECIMAL},
+			#{telephone,jdbcType=VARCHAR},
+			#{person,jdbcType=VARCHAR},
+			#{mobile,jdbcType=VARCHAR},
+			#{createTime,jdbcType=TIMESTAMP},
+			#{updateTime,jdbcType=TIMESTAMP},
+			#{optName,jdbcType=INTEGER}
+		)
+	</insert>
+	
+	<insert id="saveList" parameterType="java.util.List">
+		insert into otc_post_company_cost(
+			company_code,company_name,query_addr,add_cost,telephone,person,mobile,create_time,update_time,opt_name
+		)
+		values
+		<foreach collection="list" item="entity" separator=",">
+		(
+			#{companyCode,jdbcType=VARCHAR},
+			#{companyName,jdbcType=VARCHAR},
+			#{queryAddr,jdbcType=VARCHAR},
+			#{addCost,jdbcType=DECIMAL},
+			#{telephone,jdbcType=VARCHAR},
+			#{person,jdbcType=VARCHAR},
+			#{mobile,jdbcType=VARCHAR},
+			#{createTime,jdbcType=TIMESTAMP},
+			#{updateTime,jdbcType=TIMESTAMP},
+			#{optName,jdbcType=INTEGER}
+		)
+		</foreach>
+	</insert>
+	
+	<update id="editEntity" parameterType="com.cm.order.center.dao.po.OtcPostCompanyCostPo">
+		update otc_post_company_cost
+		<set>
+			 <if test="companyCode != null">
+		     	company_code = #{companyCode,jdbcType=VARCHAR},
+		     </if>
+			 <if test="companyName != null">
+		     	company_name = #{companyName,jdbcType=VARCHAR},
+		     </if>
+			 <if test="queryAddr != null">
+		     	query_addr = #{queryAddr,jdbcType=VARCHAR},
+		     </if>
+			 <if test="addCost != null">
+		     	add_cost = #{addCost,jdbcType=DECIMAL},
+		     </if>
+			 <if test="telephone != null">
+		     	telephone = #{telephone,jdbcType=VARCHAR},
+		     </if>
+			 <if test="person != null">
+		     	person = #{person,jdbcType=VARCHAR},
+		     </if>
+			 <if test="mobile != null">
+		     	mobile = #{mobile,jdbcType=VARCHAR},
+		     </if>
+			 <if test="createTime != null">
+		     	create_time = #{createTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="updateTime != null">
+		     	update_time = #{updateTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="optName != null">
+		     	opt_name = #{optName,jdbcType=INTEGER},
+		     </if>
+		</set>
+		where post_seq=#{postSeq,jdbcType=INTEGER}
+	</update>
+	
+	<update id="editRecord" parameterType="com.cm.architecture.jdbc.entity.EditValueAndWhereEntity">
+		update otc_post_company_cost
+		<set>
+			<foreach collection="editValue" index="key" item="item">
+				 <if test="item != null and item.value != null">
+			     	${key} = #{item.value,jdbcType=${item.jdbcType}},
+			     </if>
+			</foreach>
+		</set>
+		<where>
+			<foreach collection="editWhere" index="key" item="item">
+				<if test="item != null and item.value != null">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+			</foreach>
+		</where>
+	</update>
+
+	<delete id="remove" parameterType="com.cm.order.center.dao.po.OtcPostCompanyCostPo">
+		delete from otc_post_company_cost where 
+	    post_seq = #{postSeq,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

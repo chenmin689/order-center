@@ -6,10 +6,10 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name="user-center-server")
+//@FeignClient(name="user-center-server")
 public interface UsercenterClients {
 
 
-    @RequestMapping(path="/user/query/level",method= RequestMethod.POST)
+    //@RequestMapping(path="/user/query/level",method= RequestMethod.POST)
     public RpcResponesBean<String> queryUserDiscountLevel(RpcRequestBean rpcRequestBean);
 }

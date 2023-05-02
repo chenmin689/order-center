@@ -45,14 +45,14 @@ public class WeixinCartController {
     }
 
     /**
-     * 修改会员购物车中商品的购买数量
+     * 修改会员购物车中商品的购买数量和附加信息
      * @param weixinRequestBean
      * @return WeixinResponesBean<String>
      */
-    @RequestMapping(path="/cart/addBuyCounts",method= RequestMethod.POST)
-    public WeixinResponesBean<String> addBuyCounts(@RequestBody WeixinRequestBean weixinRequestBean) {
+    @RequestMapping(path="/cart/editCartGoods",method= RequestMethod.POST)
+    public WeixinResponesBean<String> editCartGoods(@RequestBody WeixinRequestBean weixinRequestBean) {
 
-        return weixinCartService.addBuyCounts(weixinRequestBean);
+        return weixinCartService.editCartGoods(weixinRequestBean);
     }
 
     /**
@@ -67,7 +67,7 @@ public class WeixinCartController {
     }
 
     /**
-     * 会员想要购物商品需要支付的总金额计算
+     * 购物车预计算接口
      * @param weixinRequestBean
      * @return WeixinResponesBean<PayMoneyCalculateVo>
      */

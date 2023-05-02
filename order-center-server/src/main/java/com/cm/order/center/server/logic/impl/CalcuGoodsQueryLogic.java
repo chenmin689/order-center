@@ -12,7 +12,9 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 根据会员勾选的商品列表进行支付金额计算
@@ -34,17 +36,22 @@ public class CalcuGoodsQueryLogic implements ILogic<WeixinRequestBean,String> {
         for(String seq : cartSeqs.split(",")){
             cartSeqList.add(Long.valueOf(seq));
         }
+        String buyCounts = weixinRequestBean.getStringValue("buyCounts");
+        Map<Long,Integer> buyCountMap = new HashMap<>();
+        String[] buyCountArray = buyCounts.split(",");
+        for(int i=0;i<cartSeqList.size();i++){
+            buyCountMap.put(cartSeqList.get(i),Integer.parseInt(buyCountArray[i]));
+        }
+
         List<OtcUserCartPo> list = otcUserCartSerMapper.byUserCartSeqQuery(weixinRequestBean.getTokenBean().getUserId(), cartSeqList);
         if(CollectionUtils.isEmpty(list)){
             return "会员购物中没有添加商品";
         }
         List<String> activityCode = new ArrayList<>();
         list.forEach(temp ->{
+            temp.setBuyCounts(buyCountMap.get(temp.getCartSeq()));
             if(temp.getSelltype() == 2){
                 activityCode.add(temp.getActivityCode());
-            }
-            if(temp.getSelltype() == 3){
-                weixinRequestBean.getParameter().put("batchFlg",true);
             }
             if(temp.getSelltype() == 1){
                 weixinRequestBean.getParameter().put("commonFlg",true);

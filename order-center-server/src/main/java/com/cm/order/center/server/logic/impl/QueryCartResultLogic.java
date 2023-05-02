@@ -49,11 +49,6 @@ public class QueryCartResultLogic implements ILogic<WeixinRequestBean, CartGoods
             cartGooods.setSelltype(temp.getSelltype());
             String[] prices = stringRedisTemplate.opsForValue().get(String.format(RedisStaticKeys.PRICE,weixinRequestBean.getBusinessCode(),temp.getGoodsCode())).split(",");
             cartGooods.setGoodsPrice(new BigDecimal(prices[0]));
-            if(temp.getSelltype() == 3) {
-                cartGooods.setBatchPrice(new BigDecimal(prices[1]));
-                cartGooods.setBatchCount(Integer.valueOf(prices[2]));
-            }
-
         });
         return vo;
     }

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="com.cm.order.center.dao.mapper.ser.OtcPostCompanyCostSerMapper">
+	<resultMap id="BaseResultMap" type="com.cm.order.center.dao.po.OtcPostCompanyCostPo">
+		<id column="post_seq" property="postSeq" jdbcType="INTEGER" />
+		<result column="company_code" property="companyCode" jdbcType="VARCHAR" />
+		<result column="company_name" property="companyName" jdbcType="VARCHAR" />
+		<result column="query_addr" property="queryAddr" jdbcType="VARCHAR" />
+		<result column="add_cost" property="addCost" jdbcType="DECIMAL" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="person" property="person" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="opt_name" property="optName" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="BaseVoResultMap" type="com.cm.order.center.dao.vo.OtcPostCompanyCostVo">
+		<id column="post_seq" property="postSeq" jdbcType="INTEGER" />
+		<result column="company_code" property="companyCode" jdbcType="VARCHAR" />
+		<result column="company_name" property="companyName" jdbcType="VARCHAR" />
+		<result column="query_addr" property="queryAddr" jdbcType="VARCHAR" />
+		<result column="add_cost" property="addCost" jdbcType="DECIMAL" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="person" property="person" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="opt_name" property="optName" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<select id="byPrimaryKeyPo" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select 
+		 post_seq,company_code,company_name,query_addr,add_cost,telephone,person,mobile,create_time,update_time,opt_name 
+		from otc_post_company_cost 
+		where post_seq = #{postSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryPo" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcPostCompanyCostPo">
+		select  
+		 post_seq,company_code,company_name,query_addr,add_cost,telephone,person,mobile,create_time,update_time,opt_name 
+		from otc_post_company_cost 
+		<where>
+				<if test="companyCode != null">
+					AND company_code = #{companyCode,jdbcType=VARCHAR}
+				</if>
+				<if test="companyName != null">
+					AND company_name = #{companyName,jdbcType=VARCHAR}
+				</if>
+				<if test="queryAddr != null">
+					AND query_addr = #{queryAddr,jdbcType=VARCHAR}
+				</if>
+				<if test="addCost != null">
+					AND add_cost = #{addCost,jdbcType=DECIMAL}
+				</if>
+				<if test="telephone != null">
+					AND telephone = #{telephone,jdbcType=VARCHAR}
+				</if>
+				<if test="person != null">
+					AND person = #{person,jdbcType=VARCHAR}
+				</if>
+				<if test="mobile != null">
+					AND mobile = #{mobile,jdbcType=VARCHAR}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="optName != null">
+					AND opt_name = #{optName,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
+	
+	<select id="byPrimaryKeyVo" resultMap="BaseVoResultMap" parameterType="java.lang.Integer">
+		select 
+		 post_seq,company_code,company_name,query_addr,add_cost,telephone,person,mobile,create_time,update_time,opt_name 
+		from otc_post_company_cost 
+		where post_seq = #{postSeq,jdbcType=INTEGER}
+	</select>
+	
+	<select id="byWhereQueryList" resultMap="BaseResultMap" parameterType="com.cm.order.center.dao.po.OtcPostCompanyCostPo">
+		select post_seq,company_code,company_name,query_addr,add_cost,telephone,person,mobile,create_time,update_time,opt_name from otc_post_company_cost
+		<where>
+				<if test="companyCode != null">
+					AND company_code = #{companyCode,jdbcType=VARCHAR}
+				</if>
+				<if test="companyName != null">
+					AND company_name = #{companyName,jdbcType=VARCHAR}
+				</if>
+				<if test="queryAddr != null">
+					AND query_addr = #{queryAddr,jdbcType=VARCHAR}
+				</if>
+				<if test="addCost != null">
+					AND add_cost = #{addCost,jdbcType=DECIMAL}
+				</if>
+				<if test="telephone != null">
+					AND telephone = #{telephone,jdbcType=VARCHAR}
+				</if>
+				<if test="person != null">
+					AND person = #{person,jdbcType=VARCHAR}
+				</if>
+				<if test="mobile != null">
+					AND mobile = #{mobile,jdbcType=VARCHAR}
+				</if>
+				<if test="createTime != null">
+					AND create_time = #{createTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="updateTime != null">
+					AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="optName != null">
+					AND opt_name = #{optName,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
+	
+	<select id="queryPageList" resultMap="BaseResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_post_company_cost 
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+	
+	<select id="queryPageCounts" resultType="java.lang.Integer" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select count(post_seq) from otc_post_company_cost
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="queryPageVoList" resultMap="BaseVoResultMap" parameterType="com.cm.architecture.jdbc.entity.QueryListEntity">
+		select ${queryColumn} from otc_post_company_cost
+		<where>
+			<foreach collection="where" index="key" item="item">
+				<if test="item != null and item.value != null and item.compareType == 'non'">
+					AND ${key} = #{item.value,jdbcType=${item.jdbcType}}
+				</if>
+				<if test="item != null and item.value != null and item.compareType == 'dim'">
+					AND ${key} like concat ('%',#{item.value,jdbcType=${item.jdbcType}},'%')
+				</if>
+			</foreach>
+		</where>
+		limit #{limit},#{offset}
+	</select>
+</mapper>

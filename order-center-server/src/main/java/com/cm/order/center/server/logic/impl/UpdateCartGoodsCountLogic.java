@@ -36,6 +36,9 @@ public class UpdateCartGoodsCountLogic implements ILogic<WeixinRequestBean,Strin
             return "库存修改失败，购物车中没有此商品";
         }
         po.setBuyCounts(weixinRequestBean.getIntegerValue("buyCount"));
+        if(weixinRequestBean.isNotNull("additional")){
+            po.setAdditional(weixinRequestBean.getStringValue("additional"));
+        }
         po.setUpdateTime(new Date());
         otcUserCartEditMapper.editEntity(po);
         return SystemContains.SUCCESS;
