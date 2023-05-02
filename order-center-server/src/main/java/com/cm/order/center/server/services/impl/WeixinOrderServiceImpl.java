@@ -96,7 +96,7 @@ public class WeixinOrderServiceImpl implements WeixinOrderService {
             stringRedisTemplate.opsForValue().set(key, json.toJSONString(),60, TimeUnit.MINUTES);
             return new WeixinResponesBean<>(new PreOrderVo(vo.getRealPayMoney(),vo.getOrderMoney(),vo.getDiscountMoney(),vo.getPostMoney(),key));
         }catch (Exception e) {
-            log.error("会员想要购物商品需要支付的总金额计算,异常：",e);
+            log.error("生成订单之前的数据确认和设置,异常：",e);
         }
         return new WeixinResponesBean<>(1,"系统异常，请稍后重试！");
     }
@@ -104,7 +104,18 @@ public class WeixinOrderServiceImpl implements WeixinOrderService {
     @Override
     public WeixinResponesBean<OrderVo> generateOrder(WeixinRequestBean weixinRequestBean) {
 
-        return null;
+        try {
+            //查询会员下单商品
+            String result = calcuGoodsQueryLogic.exec(weixinRequestBean);
+            if(!result.equals(SystemContains.SUCCESS)){
+                return new WeixinResponesBean<>(1,result);
+            }
+
+
+        }catch (Exception e) {
+            log.error("生成订单之前的数据确认和设置,异常：",e);
+        }
+        return new WeixinResponesBean<>(1,"系统异常，请稍后重试！");
     }
 
 

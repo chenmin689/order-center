@@ -43,7 +43,7 @@ public class CalcuGoodsQueryLogic implements ILogic<WeixinRequestBean,String> {
             buyCountMap.put(cartSeqList.get(i),Integer.parseInt(buyCountArray[i]));
         }
 
-        List<OtcUserCartPo> list = otcUserCartSerMapper.byUserCartSeqQuery(weixinRequestBean.getTokenBean().getUserId(), cartSeqList);
+        List<OtcUserCartPo> list = otcUserCartSerMapper.byUserCartSeqQuery(weixinRequestBean.getBusinessCode(),weixinRequestBean.getTokenBean().getUserId(), cartSeqList);
         if(CollectionUtils.isEmpty(list)){
             return "会员购物中没有添加商品";
         }

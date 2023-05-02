@@ -24,5 +24,5 @@ import java.util.List;
  */
 public interface OtcUserCartSerMapper extends PersistenceSerMapper<OtcUserCartPo,OtcUserCartVo,Long>{
 
-    public List<OtcUserCartPo> byUserCartSeqQuery(@Param("userId") Integer userId,@Param("cartSeqList") List<Long> cartSeqList);
+    public List<OtcUserCartPo> byUserCartSeqQuery(@Param("businessCode") String businessCode,@Param("userId") Integer userId,@Param("cartSeqList") List<Long> cartSeqList);
 }

@@ -1,5 +1,7 @@
 package com.cm.order.center.server.services.impl;
 import javax.annotation.Resource;
+
+import com.cm.architecture.commons.select.SelectNode;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import com.cm.architecture.commons.beans.ClientRequestBean;
@@ -13,6 +15,9 @@ import com.cm.order.center.dao.po.OtcPostCompanyCostPo;
 import com.cm.order.center.dao.vo.OtcPostCompanyCostVo;
 import com.cm.order.center.server.services.PostCompanyCostService;
 import com.cm.architecture.jdbc.utils.ModelErrorEnum;
+import org.springframework.util.CollectionUtils;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +34,21 @@ public class PostCompanyCostServiceImpl extends AbstractServiceImpl implements P
 	
 	@Resource
 	private OtcPostCompanyCostEditMapper otcPostCompanyCostEditMapper;
+
+	public List<SelectNode> select() {
+		List<SelectNode> result = new ArrayList<>();
+		try {
+			List<OtcPostCompanyCostPo> list = otcPostCompanyCostSerMapper.byWhereQueryList(new OtcPostCompanyCostPo());
+			if(!CollectionUtils.isEmpty(list)){
+				list.forEach(temp ->{
+					result.add(new SelectNode(temp.getCompanyCode(),temp.getCompanyName()+"（运费浮动："+temp.getAddCost()+"元）"));
+				});
+			}
+		}catch (Exception e) {
+			log.error("物流公司增值费用 ,分页查询异常：",e);
+		}
+		return result;
+	}
 
 	public ClientResponesBean<ResultFrontendVo> search(ClientRequestBean requestBean) {
 		try {
