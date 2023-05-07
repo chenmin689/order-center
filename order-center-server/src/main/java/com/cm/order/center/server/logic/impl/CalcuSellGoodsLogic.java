@@ -36,6 +36,7 @@ public class CalcuSellGoodsLogic implements ILogic<WeixinRequestBean,String> {
                 String[] prices = stringRedisTemplate.opsForValue().get(String.format(RedisStaticKeys.PRICE,weixinRequestBean.getBusinessCode(),po.getGoodsCode())).split(",");
                 sellPayMoney = sellPayMoney.add(new BigDecimal(prices[0]).multiply(new BigDecimal(po.getBuyCounts())));
                 commonPayMoney = commonPayMoney.add(po.getActivityPrice().multiply(new BigDecimal(po.getBuyCounts())));
+                po.setGoodsPrice(new BigDecimal(prices[0]));
             }
             if(sellPayMoney.compareTo(new BigDecimal(0))>0){
                 PayMoneyCalculateVo vo = new PayMoneyCalculateVo();

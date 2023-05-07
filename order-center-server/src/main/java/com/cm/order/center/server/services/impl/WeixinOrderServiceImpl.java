@@ -44,6 +44,9 @@ public class WeixinOrderServiceImpl implements WeixinOrderService {
     @Resource
     private ILogic<WeixinRequestBean,PayMoneyAmountVo> calculateResultLogic;
 
+    @Resource
+    private ILogic<WeixinRequestBean,OrderVo> createOrderNoLogic;
+
     @Override
     public WeixinResponesBean<PreOrderVo> preOrder(WeixinRequestBean weixinRequestBean) {
         try {
@@ -88,13 +91,7 @@ public class WeixinOrderServiceImpl implements WeixinOrderService {
             if(vo == null){
                 return new WeixinResponesBean<>(1,"支付金额计算失败");
             }
-            String key = "D"+System.currentTimeMillis() +"R"+ new Random().nextInt(10000);
-            JSONObject json = new JSONObject();
-            json.put("cartSeqs",weixinRequestBean.getStringValue("cartSeqs"));
-            json.put("buyCounts",weixinRequestBean.getStringValue("buyCounts"));
-            json.put("realPayMoney",vo.getRealPayMoney());
-            stringRedisTemplate.opsForValue().set(key, json.toJSONString(),60, TimeUnit.MINUTES);
-            return new WeixinResponesBean<>(new PreOrderVo(vo.getRealPayMoney(),vo.getOrderMoney(),vo.getDiscountMoney(),vo.getPostMoney(),key));
+            return new WeixinResponesBean<>(new PreOrderVo(vo.getRealPayMoney(),vo.getOrderMoney(),vo.getDiscountMoney(),vo.getPostMoney()));
         }catch (Exception e) {
             log.error("生成订单之前的数据确认和设置,异常：",e);
         }
@@ -111,7 +108,42 @@ public class WeixinOrderServiceImpl implements WeixinOrderService {
                 return new WeixinResponesBean<>(1,result);
             }
 
+            //会员购物车中商品活动有效期检查
+            result = queryCheckActivityLogic.exec(weixinRequestBean);
+            if(!result.equals(SystemContains.SUCCESS)){
+                return new WeixinResponesBean<>(1,result);
+            }
 
+            //验证库存
+            result = queryCheckGoodsStockLogic.exec(weixinRequestBean);
+            if(!result.equals(SystemContains.SUCCESS)){
+                return new WeixinResponesBean<>(1,result);
+            }
+
+            //查询会员折扣级别
+            result = calcuUserDiscountLogic.exec(weixinRequestBean);
+            if(!result.equals(SystemContains.SUCCESS)){
+                return new WeixinResponesBean<>(1,result);
+            }
+
+            //计算支付金额
+            result = calcuSellGoodsLogic.exec(weixinRequestBean);
+            if(!result.equals(SystemContains.SUCCESS)){
+                return new WeixinResponesBean<>(1,result);
+            }
+
+            //运费计算
+            result = calcuBatchGoodsLogic.exec(weixinRequestBean);
+            if(!result.equals(SystemContains.SUCCESS)){
+                return new WeixinResponesBean<>(1,result);
+            }
+
+            //组装信息返回
+            OrderVo vo = createOrderNoLogic.exec(weixinRequestBean);
+            if(vo == null){
+                return new WeixinResponesBean<>(1,"支付金额计算失败");
+            }
+            return new WeixinResponesBean<>(vo);
         }catch (Exception e) {
             log.error("生成订单之前的数据确认和设置,异常：",e);
         }

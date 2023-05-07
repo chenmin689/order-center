@@ -37,7 +37,6 @@ public class CheckCartGoodsLogic implements ILogic<WeixinRequestBean,String> {
         if(po != null){
             if(po.getSelltype() == buyType){
                 po.setBuyCounts(weixinRequestBean.getIntegerValue("buyCount"));
-
             }else{
                 po.setBuyCounts(weixinRequestBean.getIntegerValue("buyCount"));
                 po.setSelltype(buyType);

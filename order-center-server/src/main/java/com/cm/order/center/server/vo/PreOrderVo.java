@@ -34,17 +34,14 @@ public class PreOrderVo implements Serializable {
      */
     private BigDecimal postMoney;
 
-    private String userKey;
-
     public PreOrderVo(){
         super();
     }
 
-    public PreOrderVo(BigDecimal realPayMoney, BigDecimal orderMoney, BigDecimal discountMoney, BigDecimal postMoney,String userKey) {
+    public PreOrderVo(BigDecimal realPayMoney, BigDecimal orderMoney, BigDecimal discountMoney, BigDecimal postMoney) {
         this.realPayMoney = realPayMoney;
         this.orderMoney = orderMoney;
         this.discountMoney = discountMoney;
         this.postMoney = postMoney;
-        this.userKey = userKey;
     }
 }

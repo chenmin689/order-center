@@ -34,6 +34,7 @@ public class CalcuUserDiscountLogic implements ILogic<WeixinRequestBean,String> 
                 }
                 String[] prices = stringRedisTemplate.opsForValue().get(String.format(RedisStaticKeys.PRICE,weixinRequestBean.getBusinessCode(),po.getGoodsCode())).split(",");
                 commonPayMoney = commonPayMoney.add(new BigDecimal(prices[0]).multiply(new BigDecimal(po.getBuyCounts())));
+                po.setGoodsPrice(new BigDecimal(prices[0]));
             }
             if(commonPayMoney.compareTo(new BigDecimal(0))>0){
                 PayMoneyCalculateVo vo = new PayMoneyCalculateVo();

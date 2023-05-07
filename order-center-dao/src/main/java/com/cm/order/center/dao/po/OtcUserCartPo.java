@@ -44,6 +44,9 @@ public class OtcUserCartPo extends AbstractPojo {
 	@TableColumnName(columnName="goods_code",jdbcType="INTEGER")
 	private Integer goodsCode;
 
+	private BigDecimal goodsPrice;
+
+
 	/**商品名称:goods_name*/
 	@TableColumnName(columnName="goods_name",jdbcType="VARCHAR")
 	private String goodsName;
